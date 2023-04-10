@@ -1,0 +1,7 @@
+@import "~normalize.css", "reset", "variables", "breakpoints", "typography";
+
+body {
+  background: var(--background-grad);
+
+  @include p-normal;
+}

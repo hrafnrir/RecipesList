@@ -1,0 +1,29 @@
+@import "../../../styles/breakpoints", "../../../styles/typography";
+
+.root {
+  margin: {
+    bottom: 30px;
+    left: 22px;
+    right: 22px;
+  }
+
+  @include breakpoint(medium) {
+    margin: {
+      bottom: 38px;
+      left: 44px;
+      right: 44px;
+    }
+  }
+
+  @include breakpoint(large) {
+    margin: {
+      bottom: 50px;
+      left: 66px;
+      right: 66px;
+    }
+  }
+}
+
+.heading {
+  @include h1;
+}
