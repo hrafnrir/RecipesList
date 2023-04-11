@@ -10,7 +10,7 @@ const FormPopup = ({ closePopup }) => {
       <div className={s.header}>
         <h2 className={s.heading}>{`Got idea? Let's make a recipe! 🥦`}</h2>
         <p className={s.description}>
-          The list of your dishes is empty. Please add a new recipe.
+          Please fill in the input fields below and submit your recipe.
         </p>
       </div>
       <RecipeForm closePopup={closePopup} />
