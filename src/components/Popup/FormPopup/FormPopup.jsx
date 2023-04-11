@@ -1,8 +1,10 @@
+import PropTypes from "prop-types";
+
 import RecipeForm from "./RecipeForm/RecipeForm.jsx";
 
 import s from "./styles/FormPopup.module.scss";
 
-const FormPopup = () => {
+const FormPopup = ({ closePopup }) => {
   return (
     <>
       <div className={s.header}>
@@ -11,9 +13,13 @@ const FormPopup = () => {
           The list of your dishes is empty. Please add a new recipe.
         </p>
       </div>
-      <RecipeForm />
+      <RecipeForm closePopup={closePopup} />
     </>
   );
+};
+
+FormPopup.propTypes = {
+  closePopup: PropTypes.func.isRequired,
 };
 
 export default FormPopup;
