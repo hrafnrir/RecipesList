@@ -1,6 +1,6 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
-const recipes = [];
+const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
 const initialState = {
   recipes,
   dishTypes: [
