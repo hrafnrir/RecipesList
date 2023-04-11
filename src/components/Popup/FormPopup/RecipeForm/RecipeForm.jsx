@@ -6,15 +6,15 @@ import PropTypes from "prop-types";
 import { addRecipe } from "../../../../model/slices/recipesSlice.js";
 import { selectOptions } from "../../../../model/selectors.js";
 
-import { TextInput, Textarea, Select, Checkbox } from "./FormElements.jsx";
+import { TextInput, Textarea, DropDown, Checkbox } from "./FormElements.jsx";
 
 import s from "./styles/RecipeForm.module.scss";
 
 const RecipeForm = ({ closePopup }) => {
   const dispatch = useDispatch();
 
-  const dishTypes = useSelector(selectOptions("dishTypes"));
-  const mealsOfTheDay = useSelector(selectOptions("mealsOfTheDay"));
+  const dishTypeOptions = useSelector(selectOptions("dishTypes"));
+  const mealOfTheDayOptions = useSelector(selectOptions("mealsOfTheDay"));
 
   const initialValues = {
     name: "",
@@ -70,7 +70,11 @@ const RecipeForm = ({ closePopup }) => {
       <Form className={s.root}>
         <TextInput type="text" name="name" placeholder="dish name" />
 
-        <Select name="type" options={dishTypes} placeholder="dish type" />
+        <DropDown
+          name="type"
+          options={dishTypeOptions}
+          placeholder="dish type"
+        />
 
         <TextInput
           type="text"
@@ -78,9 +82,9 @@ const RecipeForm = ({ closePopup }) => {
           placeholder="ingredients for 4 serv"
         />
 
-        <Select
+        <DropDown
           name="meal"
-          options={mealsOfTheDay}
+          options={mealOfTheDayOptions}
           placeholder="meal of the day"
         />
 

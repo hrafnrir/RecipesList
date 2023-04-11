@@ -78,43 +78,6 @@
     padding-bottom: 16px;
   }
 
-  &.select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-
-    background: {
-      image: var(--select-arrow);
-      repeat: no-repeat;
-      size: 14px;
-      position: right 6px;
-    }
-
-    &:invalid:not(:focus) {
-      color: var(--second-text-color);
-    }
-
-    &:invalid:focus {
-      color: var(--first-text-color);
-    }
-
-    &:focus option {
-      color: var(--first-text-color);
-    }
-
-    @include breakpoint(medium) {
-      background-position-y: 8px;
-    }
-
-    @include breakpoint(large) {
-      cursor: pointer;
-    }
-
-    & option {
-      background-color: var(--main-background-color);
-    }
-  }
-
   &.textarea {
     padding-bottom: 0;
     height: 28px;

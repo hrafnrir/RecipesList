@@ -1,8 +1,10 @@
 import { useField } from "formik";
+import Select from "react-select";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
 import s from "./styles/FormElements.module.scss";
+import "./styles/DropDown.css";
 
 export const TextInput = (props) => {
   const [field, meta] = useField(props);
@@ -28,22 +30,22 @@ export const Textarea = (props) => {
   );
 };
 
-export const Select = ({ options, placeholder, ...props }) => {
-  const [field, meta] = useField(props);
+export const DropDown = ({ options, placeholder, ...props }) => {
+  const [field, meta, helpers] = useField(props);
+
   return (
-    <div className={s.wrapper}>
-      <select className={cn(s.field, s.select)} {...field} {...props}>
-        <option value="" disabled hidden>
-          {placeholder}
-        </option>
-        {options.map((item, index) => (
-          <option key={index} value={item}>
-            {item}
-          </option>
-        ))}
-      </select>
+    <div className={cn(s.wrapper, "wrapper")}>
+      <Select
+        classNamePrefix="reactSelect"
+        unstyled
+        name={field.name}
+        options={options}
+        placeholder={placeholder}
+        isSearchable={false}
+        onChange={(option) => helpers.setValue(option.value)}
+      />
       {meta.touched && meta.error && (
-        <span className={s.warn}>{meta.error}</span>
+        <span className={cn(s.warn, "warn")}>{meta.error}</span>
       )}
     </div>
   );
@@ -59,7 +61,7 @@ export const Checkbox = ({ label, ...props }) => {
   );
 };
 
-Select.propTypes = {
+DropDown.propTypes = {
   options: PropTypes.array.isRequired,
   placeholder: PropTypes.string.isRequired,
 };
