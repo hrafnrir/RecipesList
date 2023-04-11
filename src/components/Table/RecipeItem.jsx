@@ -33,6 +33,7 @@ const RecipeItem = ({ recipe }) => {
       {isPopupOpen && (
         <Popup
           type="openRecipe"
+          recipe={recipe}
           closePopup={() => {
             setPopup(false);
           }}

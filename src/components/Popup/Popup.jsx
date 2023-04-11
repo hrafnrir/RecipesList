@@ -5,7 +5,7 @@ import RecipePopup from "./RecipePopup/RecipePopup.jsx";
 
 import s from "./styles/Popup.module.scss";
 
-const Popup = ({ type, closePopup }) => {
+const Popup = ({ type, closePopup, recipe }) => {
   return (
     <div className={s.root}>
       <div className={s.mainWrapper}>
@@ -13,7 +13,7 @@ const Popup = ({ type, closePopup }) => {
           {type === "addRecipe" ? (
             <FormPopup closePopup={closePopup} />
           ) : (
-            <RecipePopup />
+            <RecipePopup recipe={recipe} />
           )}
           <button className={s.closeBtn} onClick={closePopup}></button>
         </div>
@@ -25,6 +25,7 @@ const Popup = ({ type, closePopup }) => {
 Popup.propTypes = {
   type: PropTypes.string.isRequired,
   closePopup: PropTypes.func.isRequired,
+  recipe: PropTypes.object,
 };
 
 export default Popup;
