@@ -1,11 +1,14 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import Popup from "../Popup/Popup.jsx";
 
 import s from "./styles/RecipeItem.module.scss";
 
-const RecipeItem = () => {
+const RecipeItem = ({ recipe }) => {
   const [isPopupOpen, setPopup] = useState(false);
+
+  const { name, isVegan, type, meal, kcal, time } = recipe;
 
   return (
     <>
@@ -17,13 +20,13 @@ const RecipeItem = () => {
           ></button>
         </div>
         <div className={s.column}>
-          <span className={s.name}>Apple pie</span>
-          <span className={s.tag}>vegan</span>
+          <span className={s.name}>{name}</span>
+          {isVegan && <span className={s.tag}>vegan</span>}
         </div>
-        <div className={s.column}>baking</div>
-        <div className={s.column}>lunch</div>
-        <div className={s.column}>220</div>
-        <div className={s.column}>50</div>
+        <div className={s.column}>{type}</div>
+        <div className={s.column}>{meal}</div>
+        <div className={s.column}>{kcal}</div>
+        <div className={s.column}>{time}</div>
         <div className={s.column}></div>
       </div>
 
@@ -37,6 +40,10 @@ const RecipeItem = () => {
       )}
     </>
   );
+};
+
+RecipeItem.propTypes = {
+  recipe: PropTypes.object.isRequired,
 };
 
 export default RecipeItem;
