@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
 
 import Popup from "../Popup/Popup.jsx";
@@ -30,15 +31,15 @@ const RecipeItem = ({ recipe }) => {
         <div className={s.column}></div>
       </div>
 
-      {isPopupOpen && (
-        <Popup
-          type="openRecipe"
-          recipe={recipe}
-          closePopup={() => {
-            setPopup(false);
-          }}
-        />
-      )}
+      {isPopupOpen &&
+        createPortal(
+          <Popup
+            type="openRecipe"
+            recipe={recipe}
+            closePopup={() => setPopup(false)}
+          />,
+          document.getElementById("root")
+        )}
     </>
   );
 };

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
-import FormPopup from "./FormPopup/FormPopup.jsx";
-import RecipePopup from "./RecipePopup/RecipePopup.jsx";
+import FormPopup from "./FormPopup.jsx";
+import RecipePopup from "./RecipePopup.jsx";
 
 import s from "./styles/Popup.module.scss";
 

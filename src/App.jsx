@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { useSelector } from "react-redux";
 
 import { selectRecipes } from "./model/selectors.js";
@@ -19,8 +20,7 @@ const App = () => {
       <div className={s.root}>
         <div className={s.mainBlock}>
           <Header />
-          {!isListEmpty && <Table />}
-          {isListEmpty && <EmptyList />}
+          {isListEmpty ? <EmptyList /> : <Table />}
         </div>
         <button
           className={s.addRecipeBtn}
@@ -29,14 +29,11 @@ const App = () => {
           }}
         ></button>
       </div>
-      {isPopupOpen && (
-        <Popup
-          type="addRecipe"
-          closePopup={() => {
-            setPopup(false);
-          }}
-        />
-      )}
+      {isPopupOpen &&
+        createPortal(
+          <Popup type="addRecipe" closePopup={() => setPopup(false)} />,
+          document.getElementById("root")
+        )}
     </>
   );
 };
