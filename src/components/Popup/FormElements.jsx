@@ -43,6 +43,7 @@ export const DropDown = ({ options, placeholder, ...props }) => {
         placeholder={placeholder}
         isSearchable={false}
         onChange={(option) => helpers.setValue(option.value)}
+        onBlur={() => helpers.setTouched(true)}
       />
       {meta.touched && meta.error && (
         <span className={cn(s.warn, "warn")}>{meta.error}</span>
