@@ -1,0 +1,79 @@
+@import "../../../styles/breakpoints", "../../../styles/typography";
+
+.root {
+  margin-bottom: 14px;
+
+  @include breakpoint(medium) {
+    margin-bottom: 18px;
+  }
+}
+
+.headings {
+  margin: 0 62px;
+
+  @include breakpoint(medium) {
+    display: flex;
+    margin: {
+      left: 94px;
+      right: 70px;
+    }
+  }
+
+  @include breakpoint(large) {
+    margin: {
+      left: 116px;
+      right: 92px;
+    }
+  }
+}
+
+.column {
+  @include p-medium;
+
+  display: none;
+  color: var(--second-text-color);
+
+  &:first-of-type {
+    display: inline-block;
+  }
+
+  @include breakpoint(medium) {
+    &:nth-of-type(3),
+    &:nth-of-type(4),
+    &:last-of-type {
+      display: inline-block;
+      text-align: center;
+    }
+
+    &:nth-of-type(3) {
+      margin-left: auto;
+      min-width: 80px;
+    }
+
+    &:nth-of-type(4) {
+      min-width: 80px;
+    }
+
+    &:last-of-type {
+      min-width: 70px;
+    }
+  }
+
+  @include breakpoint(large) {
+    &:nth-of-type(2),
+    &:nth-of-type(3),
+    &:nth-of-type(4) {
+      min-width: 120px;
+    }
+
+    &:nth-of-type(2) {
+      display: inline-block;
+      margin-left: auto;
+      text-align: center;
+    }
+
+    &:nth-of-type(3) {
+      margin-left: 0;
+    }
+  }
+}

@@ -1,0 +1,71 @@
+@mixin container($size) {
+  position: relative;
+  box-sizing: content-box;
+  margin: 20px 16px;
+  min-width: 320px;
+
+  @if $size == large {
+    @include breakpoint(medium) {
+      margin: 50px 30px;
+      min-width: 600px;
+    }
+
+    @include breakpoint(large) {
+      margin: 80px auto;
+      max-width: 1032px;
+    }
+  }
+
+  @if $size == medium {
+    margin-top: 40px;
+
+    @include breakpoint(medium) {
+      margin: {
+        top: 90px;
+        bottom: 50px;
+        left: 60px;
+        right: 60px;
+      }
+
+      min-width: 540px;
+    }
+
+    @include breakpoint(large) {
+      margin: 140px auto;
+      max-width: 900px;
+    }
+  }
+}
+
+%popup-block {
+  padding: {
+    top: 18px;
+    bottom: 44px;
+    left: 22px;
+    right: 22px;
+  }
+
+  background-color: var(--main-background-color);
+  border-radius: 18px;
+  box-shadow: 0px 0px 90px rgba(0, 0, 0, 0.06);
+
+  @include breakpoint(medium) {
+    padding: {
+      top: 40px;
+      bottom: 48px;
+      left: 44px;
+      right: 44px;
+    }
+
+    border-radius: 26px;
+    box-shadow: 0px 0px 90px rgba(0, 0, 0, 0.08);
+  }
+
+  @include breakpoint(large) {
+    padding: {
+      bottom: 66px;
+      left: 66px;
+      right: 66px;
+    }
+  }
+}

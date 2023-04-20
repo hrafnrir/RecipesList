@@ -1,0 +1,32 @@
+@import "../../../styles/breakpoints", "../../..//styles/typography",
+  "../../../styles/buttons";
+
+.root {
+  @include breakpoint(medium) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 60px;
+  }
+
+  @include breakpoint(large) {
+    column-gap: 88px;
+  }
+}
+
+.submitWrapper {
+  @extend %add-recipe-button;
+
+  & .submitBtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 10;
+    min-width: var(--width);
+    min-height: var(--width);
+
+    @include breakpoint(large) {
+      cursor: pointer;
+    }
+  }
+}

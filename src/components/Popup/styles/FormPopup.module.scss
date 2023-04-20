@@ -1,0 +1,30 @@
+@import "../../../styles/breakpoints", "../../../styles/typography";
+
+.header {
+  margin-bottom: 38px;
+
+  @include breakpoint(medium) {
+    margin-bottom: 44px;
+  }
+
+  @include breakpoint(medium) {
+    margin-bottom: 66px;
+  }
+}
+
+.heading {
+  @include h2;
+
+  margin-bottom: 8px;
+  color: var(--first-text-color);
+
+  @include breakpoint(medium) {
+    margin-bottom: 12px;
+  }
+}
+
+.description {
+  @include p-normal;
+
+  color: var(--second-text-color);
+}

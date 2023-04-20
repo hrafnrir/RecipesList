@@ -1,0 +1,35 @@
+/* light theme variables */
+
+body[data-theme="light"] {
+  /* colors */
+
+  --main-background-color: #f9f9f9;
+  --first-text-color: #101010;
+  --second-text-color: #9b9b9b;
+  --border-color: #e8e8e8;
+  --accent-color: #0d59cc;
+  --tag-color: #85c816;
+  --warning-color: #cc240d;
+  --light-blue-accent-color: #d0e3fc;
+
+  /* gradients */
+
+  --background-grad: linear-gradient(0.25turn, #e9f9de, #d0e3fc);
+  --popup-background-grad: linear-gradient(
+    0.25turn,
+    rgb(233, 249, 222, 0.5),
+    rgb(208, 227, 252, 0.5)
+  );
+
+  /* icons */
+
+  --fast-view-btn: url("../assets/icons/lightTheme/fast-view-btn.svg");
+  --fast-view-btn_active: url("../assets/icons/lightTheme/fast-view-btn_active.svg");
+  --empty-list: url("../assets/icons/lightTheme/empty-list-icon.png");
+  --select-arrow: url("../assets/icons/lightTheme/select-arrow.svg");
+  --checkbox: url("../assets/icons/lightTheme/checkbox.svg");
+  --checkbox_checked: url("../assets/icons/lightTheme/checkbox_checked.svg");
+  --close-popup-btn: url("../assets/icons/lightTheme/close-popup-btn.svg");
+  --close-popup-btn_active: url("../assets/icons/lightTheme/close-popup-btn_active.svg");
+  --close-popup-btn_mob: url("../assets/icons/lightTheme/close-popup-btn_mob.svg");
+}

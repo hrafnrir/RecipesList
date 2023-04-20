@@ -1,0 +1,102 @@
+$main-font-family: Montserrat, Arial, sans-serif;
+
+@mixin main-font {
+  font: {
+    family: $main-font-family;
+    style: normal;
+  }
+  letter-spacing: 0em;
+  line-height: 140%;
+}
+
+@mixin h1 {
+  @include main-font;
+
+  font: {
+    weight: 900;
+    size: 20px;
+  }
+
+  @include breakpoint(medium) {
+    font-size: 36px;
+  }
+}
+
+@mixin h2 {
+  @include main-font;
+
+  font: {
+    weight: 800;
+    size: 16px;
+  }
+
+  @include breakpoint(medium) {
+    font-size: 24px;
+  }
+}
+
+@mixin h3 {
+  @include main-font;
+
+  font: {
+    weight: 500;
+    size: 14px;
+  }
+
+  @include breakpoint(medium) {
+    font-size: 16px;
+  }
+}
+
+@mixin p-normal {
+  @include main-font;
+
+  font: {
+    weight: 400;
+    size: 14px;
+  }
+
+  @include breakpoint(medium) {
+    font-size: 16px;
+    line-height: 160%;
+  }
+}
+
+@mixin p-medium {
+  @include main-font;
+
+  font: {
+    weight: 400;
+    size: 12px;
+  }
+
+  @include breakpoint(medium) {
+    font-size: 14px;
+  }
+}
+
+@mixin p-small {
+  @include main-font;
+
+  font: {
+    weight: 400;
+    size: 10px;
+  }
+
+  @include breakpoint(medium) {
+    font-size: 12px;
+  }
+}
+
+@mixin tag {
+  @include main-font;
+
+  font: {
+    weight: 700;
+    size: 12px;
+  }
+
+  @include breakpoint(medium) {
+    font-size: 14px;
+  }
+}

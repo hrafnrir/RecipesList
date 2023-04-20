@@ -1,0 +1,102 @@
+@import "./typography";
+
+%add-recipe-button {
+  --width: 36px;
+
+  position: absolute;
+  bottom: calc(-1 * var(--width) / 2);
+  left: calc(50% - (var(--width) / 2));
+  width: var(--width);
+  height: var(--width);
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.16);
+
+  @include breakpoint(medium) {
+    --width: 50px;
+  }
+
+  &::before {
+    --deg: 0deg;
+  }
+
+  &::after {
+    --deg: 90deg;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: "";
+    top: 47%;
+    left: 28%;
+    width: calc(var(--width) - 56%);
+    height: 3px;
+    border-radius: 3px;
+    background-color: var(--main-background-color);
+    transform: rotate(var(--deg));
+    transition: transform 1s ease;
+  }
+
+  @include breakpoint(large) {
+    cursor: pointer;
+
+    &:hover::before,
+    &:hover::after {
+      transform: rotate(calc(var(--deg) + 180deg));
+    }
+  }
+}
+
+%close-popup-button {
+  --width: 18px;
+
+  position: absolute;
+  top: -28px;
+  right: 0;
+  width: var(--width);
+  height: var(--width);
+  background: {
+    color: transparent;
+    image: var(--close-popup-btn_mob);
+    repeat: no-repeat;
+    size: var(--width);
+    position: contain;
+  }
+
+  transition: background-image 0.4s linear;
+
+  &:active {
+    background-image: var(--close-popup-btn_active);
+  }
+
+  @include breakpoint(medium) {
+    top: -32px;
+  }
+
+  @include breakpoint(large) {
+    cursor: pointer;
+    top: 44px;
+    right: 66px;
+    background-image: var(--close-popup-btn);
+
+    &:hover {
+      background-image: var(--close-popup-btn_active);
+    }
+  }
+}
+
+%tag {
+  @include tag;
+
+  display: inline-block;
+  padding: 0 4px;
+  color: var(--tag-color);
+  border: 2px var(--tag-color) solid;
+  border-radius: 10px;
+
+  @include breakpoint(medium) {
+    padding: 0 7px;
+    border-radius: 12px;
+  }
+}
