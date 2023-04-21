@@ -39,6 +39,12 @@ export const DropDown = ({ options, placeholder, ...props }) => {
         classNamePrefix="reactSelect"
         unstyled
         name={field.name}
+        defaultValue={
+          meta.initialValue && {
+            value: meta.initialValue,
+            label: meta.initialValue,
+          }
+        }
         options={options}
         placeholder={placeholder}
         isSearchable={false}

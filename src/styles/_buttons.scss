@@ -48,6 +48,43 @@
   }
 }
 
+%delete-recipe-button {
+  --width: 36px;
+
+  position: absolute;
+  bottom: calc(-1 * var(--width) / 2);
+  left: calc(50% - (var(--width) / 2) + var(--width));
+  width: var(--width);
+  height: var(--width);
+  background-color: var(--warning-color);
+  border-radius: 50%;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.16);
+
+  @include breakpoint(medium) {
+    --width: 50px;
+  }
+
+  &::before {
+    position: absolute;
+    content: "";
+    top: 47%;
+    left: 28%;
+    width: calc(var(--width) - 56%);
+    height: 3px;
+    border-radius: 3px;
+    background-color: var(--main-background-color);
+    transition: transform 1s ease;
+  }
+
+  @include breakpoint(large) {
+    cursor: pointer;
+
+    &:hover::before {
+      transform: rotate(180deg);
+    }
+  }
+}
+
 %close-popup-button {
   --width: 18px;
 

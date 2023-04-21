@@ -10,10 +10,10 @@ const Popup = ({ type, closePopup, recipe }) => {
     <div className={s.root}>
       <div className={s.mainWrapper}>
         <div className={s.mainBlock}>
-          {type === "addRecipe" ? (
-            <FormPopup closePopup={closePopup} />
-          ) : (
+          {type === "openRecipe" ? (
             <RecipePopup recipe={recipe} />
+          ) : (
+            <FormPopup type={type} closePopup={closePopup} recipe={recipe} />
           )}
           <button className={s.closeBtn} onClick={closePopup}></button>
         </div>

@@ -7,7 +7,7 @@ import Popup from "../Popup/Popup.jsx";
 import s from "./styles/RecipeItem.module.scss";
 
 const RecipeItem = ({ recipe }) => {
-  const [isPopupOpen, setPopup] = useState(false);
+  const [isPopupOpen, setPopup] = useState({ fastView: false, edit: false });
 
   const { name, isVegan, type, meal, kcal, time } = recipe;
 
@@ -17,7 +17,9 @@ const RecipeItem = ({ recipe }) => {
         <div className={s.column}>
           <button
             className={s.fastViewBtn}
-            onClick={() => setPopup(true)}
+            onClick={() =>
+              setPopup((prevState) => ({ ...prevState, fastView: true }))
+            }
           ></button>
         </div>
         <div className={s.column}>
@@ -29,16 +31,35 @@ const RecipeItem = ({ recipe }) => {
         <div className={s.column}>{kcal}</div>
         <div className={s.column}>{time}</div>
         <div className={s.column}>
-          <button className={s.editBtn}></button>
+          <button
+            className={s.editBtn}
+            onClick={() =>
+              setPopup((prevState) => ({ ...prevState, edit: true }))
+            }
+          ></button>
         </div>
       </div>
 
-      {isPopupOpen &&
+      {isPopupOpen.fastView &&
         createPortal(
           <Popup
             type="openRecipe"
             recipe={recipe}
-            closePopup={() => setPopup(false)}
+            closePopup={() =>
+              setPopup((prevState) => ({ ...prevState, fastView: false }))
+            }
+          />,
+          document.getElementById("root")
+        )}
+
+      {isPopupOpen.edit &&
+        createPortal(
+          <Popup
+            type="editRecipe"
+            recipe={recipe}
+            closePopup={() => {
+              setPopup((prevState) => ({ ...prevState, edit: false }));
+            }}
           />,
           document.getElementById("root")
         )}
