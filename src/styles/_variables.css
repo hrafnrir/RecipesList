@@ -25,6 +25,8 @@ body[data-theme="light"] {
 
   --fast-view-btn: url("../assets/icons/lightTheme/fast-view-btn.svg");
   --fast-view-btn_active: url("../assets/icons/lightTheme/fast-view-btn_active.svg");
+  --edit-btn: url("../assets/icons/lightTheme/edit-btn.svg");
+  --edit-btn_active: url("../assets/icons/lightTheme/edit-btn_active.svg");
   --empty-list: url("../assets/icons/lightTheme/empty-list-icon.png");
   --select-arrow: url("../assets/icons/lightTheme/select-arrow.svg");
   --checkbox: url("../assets/icons/lightTheme/checkbox.svg");

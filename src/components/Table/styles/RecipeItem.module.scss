@@ -145,3 +145,29 @@
     }
   }
 }
+
+.editBtn {
+  width: 100%;
+  height: 26px;
+  vertical-align: middle;
+  background: {
+    color: transparent;
+    image: var(--edit-btn);
+    repeat: no-repeat;
+    position: right;
+  }
+
+  transition: background-image 0.4s linear;
+
+  &:active {
+    background-image: var(--edit-btn_active);
+  }
+
+  @include breakpoint(large) {
+    cursor: pointer;
+
+    &:hover {
+      background-image: var(--edit-btn_active);
+    }
+  }
+}

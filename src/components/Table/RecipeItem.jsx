@@ -28,7 +28,9 @@ const RecipeItem = ({ recipe }) => {
         <div className={s.column}>{meal}</div>
         <div className={s.column}>{kcal}</div>
         <div className={s.column}>{time}</div>
-        <div className={s.column}></div>
+        <div className={s.column}>
+          <button className={s.editBtn}></button>
+        </div>
       </div>
 
       {isPopupOpen &&
