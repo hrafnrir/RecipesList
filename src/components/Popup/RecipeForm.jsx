@@ -3,7 +3,11 @@ import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
-import { addRecipe } from "../../model/slices/recipesSlice.js";
+import {
+  addRecipe,
+  updateRecipe,
+  deleteRecipe,
+} from "../../model/slices/recipesSlice.js";
 import { selectOptions } from "../../model/selectors.js";
 import { validation } from "./formValidation.js";
 
@@ -32,13 +36,28 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
   const recipeValues = { ...recipe };
   delete recipeValues.id;
 
-  const initialValues =
-    type === "addRecipe"
-      ? clearValues
-      : { ...recipeValues, ingredients: recipeValues.ingredients.join(", ") };
+  const initialValues = type === "addRecipe" ? clearValues : recipeValues;
 
   const handleSubmit = (values) => {
-    dispatch(addRecipe({ ...values }));
+    if (type === "addRecipe") {
+      dispatch(addRecipe({ ...values }));
+    } else {
+      const updatedValues = Object.keys(values).reduce((obj, item) => {
+        if (values[item] !== initialValues[item]) {
+          obj[item] = values[item];
+          return obj;
+        }
+        return obj;
+      }, {});
+
+      dispatch(updateRecipe({ ...updatedValues, id: recipe.id }));
+    }
+
+    closePopup();
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteRecipe({ id: recipe.id }));
     closePopup();
   };
 
@@ -79,7 +98,11 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
         </div>
 
         {type === "editRecipe" && (
-          <button className={s.deleteBtn} type="button"></button>
+          <button
+            className={s.deleteBtn}
+            type="button"
+            onClick={handleDelete}
+          ></button>
         )}
       </Form>
     </Formik>

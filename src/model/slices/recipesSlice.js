@@ -20,11 +20,6 @@ const initialState = {
   mealsOfTheDay: ["breakfast", "lunch", "dinner", "supper"],
 };
 
-const getArray = (str) => {
-  const mark = str.includes(";") ? ";" : ",";
-  return str.split(mark).map((item) => item.trim());
-};
-
 const recipesSlice = createSlice({
   name: "recipes",
   initialState,
@@ -38,14 +33,31 @@ const recipesSlice = createSlice({
         meal: action.payload.meal,
         time: action.payload.time,
         kcal: action.payload.kcal,
-        ingredients: getArray(action.payload.ingredients),
+        ingredients: action.payload.ingredients,
         recipeText: action.payload.recipeText,
         isVegan: action.payload.isVegan,
       });
     },
+
+    updateRecipe(state, action) {
+      state.recipes = state.recipes.map((item) =>
+        item.id === action.payload.id
+          ? {
+              ...item,
+              ...action.payload,
+            }
+          : item
+      );
+    },
+
+    deleteRecipe(state, action) {
+      state.recipes = state.recipes.filter(
+        ({ id }) => id !== action.payload.id
+      );
+    },
   },
 });
 
-export const { addRecipe } = recipesSlice.actions;
+export const { addRecipe, updateRecipe, deleteRecipe } = recipesSlice.actions;
 
 export default recipesSlice.reducer;

@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 
+import { getArrayFromString } from "../../utils/dataConversion.js";
+
 import s from "./styles/RecipePopup.module.scss";
 
 const RecipePopup = ({ recipe }) => {
@@ -15,9 +17,11 @@ const RecipePopup = ({ recipe }) => {
     recipeText,
   } = recipe;
 
-  const recipeIngredients = ingredients.map((item, index) => (
+  let recipeIngredients = getArrayFromString(ingredients);
+  recipeIngredients = recipeIngredients.map((item, index) => (
     <li key={index} className={s.ingredient}>
-      {item.toLowerCase()};
+      {item}
+      {index < recipeIngredients.length - 1 ? ";" : "."}
     </li>
   ));
 
