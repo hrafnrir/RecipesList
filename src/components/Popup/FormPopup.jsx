@@ -10,7 +10,7 @@ const FormPopup = ({ type, closePopup, recipe }) => {
       ? {
           heading: "Got idea? Let's make a recipe! 🥦",
           description:
-            "The list of your dishes is empty. Please add a new recipe.",
+            "Please fill in the input fields below and submit your recipe.",
         }
       : {
           heading: recipe.name,

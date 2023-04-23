@@ -9,11 +9,6 @@
   border-bottom: 1px var(--first-text-color) solid;
   background-color: transparent;
   min-height: 28px !important;
-
-  @media screen and (min-width: 660px) {
-    font-size: 14px;
-    min-height: 37px !important;
-  }
 }
 
 .wrapper:has(.warn) .reactSelect__control {
@@ -34,10 +29,6 @@
 
 .reactSelect__value-container {
   margin-bottom: 8px;
-
-  @media screen and (min-width: 660px) {
-    margin-bottom: 16px;
-  }
 }
 
 .reactSelect__value-container--has-value {
@@ -73,20 +64,12 @@
   border: 1px var(--border-color) solid;
   border-radius: 18px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
-
-  @media screen and (min-width: 660px) {
-    font-size: 14px;
-  }
 }
 
 .reactSelect__option {
   cursor: pointer !important;
   padding: 18px;
   border-bottom: 1px var(--border-color) solid;
-
-  @media screen and (min-width: 1200px) {
-    padding: 12px 18px;
-  }
 }
 
 .reactSelect__option:last-child {
@@ -100,4 +83,23 @@
 .reactSelect__option--is-selected {
   color: var(--main-background-color);
   background-color: var(--accent-color);
+}
+
+@media screen and (min-width: 660px) {
+  .reactSelect__control {
+    font-size: 14px;
+    min-height: 37px !important;
+  }
+
+  .reactSelect__value-container {
+    margin-bottom: 16px;
+  }
+
+  .reactSelect__menu {
+    font-size: 14px;
+  }
+
+  .reactSelect__option {
+    padding: 12px 18px;
+  }
 }

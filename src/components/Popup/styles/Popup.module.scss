@@ -13,6 +13,7 @@
   background: var(--popup-background-grad);
   backdrop-filter: blur(36px);
 
+  -webkit-backdrop-filter: blur(18px);
   -webkit-overflow-scrolling: touch;
 }
 

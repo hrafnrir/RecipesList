@@ -51,7 +51,7 @@ export const DropDown = ({ options, placeholder, ...props }) => {
         onChange={(option) => helpers.setValue(option.value)}
         onBlur={() => helpers.setTouched(true)}
       />
-      {meta.touched && meta.error && (
+      {meta.touched && meta.error && !meta.value && (
         <span className={cn(s.warn, "warn")}>{meta.error}</span>
       )}
     </div>
