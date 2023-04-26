@@ -29,6 +29,8 @@ body[data-theme="light"] {
   --edit-btn_active: url("../assets/icons/lightTheme/edit-btn_active.svg");
   --empty-list: url("../assets/icons/lightTheme/empty-list-icon.png");
   --select-arrow: url("../assets/icons/lightTheme/select-arrow.svg");
+  --delete-option: url("../assets/icons/lightTheme/delete-option.svg");
+  --delete-option_active: url("../assets/icons/lightTheme/delete-option_active.svg");
   --checkbox: url("../assets/icons/lightTheme/checkbox.svg");
   --checkbox_checked: url("../assets/icons/lightTheme/checkbox_checked.svg");
   --close-popup-btn: url("../assets/icons/lightTheme/close-popup-btn.svg");

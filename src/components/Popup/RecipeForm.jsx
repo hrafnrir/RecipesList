@@ -11,7 +11,13 @@ import {
 import { selectOptions } from "../../model/selectors.js";
 import { validation } from "./formValidation.js";
 
-import { TextInput, Textarea, DropDown, Checkbox } from "./FormElements.jsx";
+import {
+  TextInput,
+  Textarea,
+  DropDown,
+  MultivaluedDropDown,
+  Checkbox,
+} from "./FormElements.jsx";
 
 import s from "./styles/RecipeForm.module.scss";
 
@@ -32,6 +38,7 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
 
   const dishTypeOptions = useSelector(selectOptions("dishTypes"));
   const mealOfTheDayOptions = useSelector(selectOptions("mealsOfTheDay"));
+  const ingredientOptions = useSelector(selectOptions("ingredients"));
 
   const recipeValues = { ...recipe };
   delete recipeValues.id;
@@ -78,17 +85,17 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
           options={dishTypeOptions}
           placeholder="dish type"
         />
-        <TextInput
-          type="text"
-          name="ingredients"
-          placeholder="ingredients for 4 serv"
-        />
         <DropDown
           name="meal"
           options={mealOfTheDayOptions}
           placeholder="meal of the day"
         />
         <TextInput type="text" name="time" placeholder="cooking time" />
+        <MultivaluedDropDown
+          name="ingredients"
+          options={ingredientOptions}
+          placeholder="ingredients for 4 serv"
+        />
         <TextInput type="text" name="kcal" placeholder="kcal in 100 g" />
         <Textarea name="recipeText" placeholder="the recipe" />
         <Textarea name="description" placeholder="dish description" />

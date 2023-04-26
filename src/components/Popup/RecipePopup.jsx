@@ -1,7 +1,5 @@
 import PropTypes from "prop-types";
 
-import { getArrayFromString } from "../../utils/dataConversion.js";
-
 import s from "./styles/RecipePopup.module.scss";
 
 const RecipePopup = ({ recipe }) => {
@@ -17,12 +15,10 @@ const RecipePopup = ({ recipe }) => {
     recipeText,
   } = recipe;
 
-  let recipeIngredients = getArrayFromString(ingredients);
-  recipeIngredients = recipeIngredients.map((item, index) => (
-    <li key={index} className={s.ingredient}>
-      {item}
-      {index < recipeIngredients.length - 1 ? ";" : "."}
-    </li>
+  let recipeIngredients = ingredients.map((item, index) => (
+    <span key={index} className={s.ingredient}>
+      {item.value}
+    </span>
   ));
 
   return (
@@ -49,7 +45,7 @@ const RecipePopup = ({ recipe }) => {
       </div>
       <div className={s.block}>
         <h3 className={s.title}>ingredients:</h3>
-        <ul>{recipeIngredients}</ul>
+        <div className={s.ingredientList}>{recipeIngredients}</div>
       </div>
       <div className={s.block}>
         <h3 className={s.title}>the recipe:</h3>

@@ -1,23 +1,12 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { dishTypes, mealsOfTheDay, ingredients } from "./formOptions";
 
 const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
 const initialState = {
   recipes,
-  dishTypes: [
-    "bakery",
-    "cake",
-    "dessert",
-    "drink",
-    "pasta",
-    "pizza",
-    "roast",
-    "salad",
-    "sandwich",
-    "snacks",
-    "soup",
-    "stew",
-  ],
-  mealsOfTheDay: ["breakfast", "lunch", "dinner", "supper"],
+  dishTypes,
+  mealsOfTheDay,
+  ingredients,
 };
 
 const recipesSlice = createSlice({

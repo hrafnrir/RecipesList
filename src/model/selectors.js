@@ -7,6 +7,6 @@ export const selectOptions = (name) =>
     (state) => state.recipes[name],
     (items) =>
       items.map((item) => {
-        return { value: item, label: item };
+        return { label: item, value: item };
       })
   );
