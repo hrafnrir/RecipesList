@@ -41,26 +41,12 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
   const mealOfTheDayOptions = useSelector(selectOptions("mealsOfTheDay"));
   const ingredientOptions = useSelector(selectOptions("ingredients"));
 
-  const recipeValues = { ...recipe };
-  delete recipeValues.id;
-
-  const initialValues = type === "addRecipe" ? clearValues : recipeValues;
+  const initialValues = type === "addRecipe" ? clearValues : recipe;
 
   const handleSubmit = (values) => {
-    if (type === "addRecipe") {
-      dispatch(addRecipe({ ...values }));
-    } else {
-      const updatedValues = Object.keys(values).reduce((obj, item) => {
-        if (values[item] !== initialValues[item]) {
-          obj[item] = values[item];
-          return obj;
-        }
-        return obj;
-      }, {});
-
-      dispatch(updateRecipe({ ...updatedValues, id: recipe.id }));
-    }
-
+    type === "addRecipe"
+      ? dispatch(addRecipe({ ...values }))
+      : dispatch(updateRecipe({ ...values }));
     closePopup();
   };
 

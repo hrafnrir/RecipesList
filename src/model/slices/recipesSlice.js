@@ -30,12 +30,7 @@ const recipesSlice = createSlice({
 
     updateRecipe(state, action) {
       state.recipes = state.recipes.map((item) =>
-        item.id === action.payload.id
-          ? {
-              ...item,
-              ...action.payload,
-            }
-          : item
+        item.id === action.payload.id ? action.payload : item
       );
     },
 
