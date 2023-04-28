@@ -14,6 +14,7 @@ import { validation } from "./formValidation.js";
 import {
   TextInput,
   Textarea,
+  TimeInput,
   DropDown,
   MultivaluedDropDown,
   Checkbox,
@@ -26,7 +27,7 @@ const clearValues = {
   type: "",
   ingredients: "",
   meal: "",
-  time: "",
+  time: "00:00",
   kcal: "",
   recipeText: "",
   description: "",
@@ -90,13 +91,13 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
           options={mealOfTheDayOptions}
           placeholder="meal of the day"
         />
-        <TextInput type="text" name="time" placeholder="cooking time" />
+        <TextInput type="text" name="kcal" placeholder="kcal in 100 g" />
         <MultivaluedDropDown
           name="ingredients"
           options={ingredientOptions}
           placeholder="ingredients for 4 serv"
         />
-        <TextInput type="text" name="kcal" placeholder="kcal in 100 g" />
+        <TimeInput type="time" name="time" label="cooking time" />
         <Textarea name="recipeText" placeholder="the recipe" />
         <Textarea name="description" placeholder="dish description" />
         <Checkbox label="this is a vegan dish" name="isVegan" />

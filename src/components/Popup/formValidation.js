@@ -20,8 +20,8 @@ export const validation = Yup.object({
 
   meal: Yup.string().required(emptyError("Meal")),
 
-  time: Yup.number()
-    .typeError(numberError("The time", "is"))
+  time: Yup.string()
+    .matches(/[^0:]/g, emptyError("Cooking time"))
     .required(emptyError("Cooking time")),
 
   kcal: Yup.number()

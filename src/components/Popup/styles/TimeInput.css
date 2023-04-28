@@ -1,0 +1,7 @@
+.wrapper:has(.warn) .timepicker__control {
+  border-bottom-color: var(--warning-color) !important;
+}
+
+.wrapper:has(.warn) .timepicker__input {
+  color: var(--warning-color) !important;
+}

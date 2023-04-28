@@ -4,8 +4,11 @@ import CreatableSelect from "react-select/creatable";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
+import { TimePicker } from "./TimePicker.jsx";
+
 import s from "./styles/FormElements.module.scss";
 import "./styles/DropDown.css";
+import "./styles/TimeInput.css";
 
 export const TextInput = (props) => {
   const [field, meta] = useField(props);
@@ -26,6 +29,24 @@ export const Textarea = (props) => {
       <textarea className={cn(s.field, s.textarea)} {...field} {...props} />
       {meta.touched && meta.error && (
         <span className={s.warn}>{meta.error}</span>
+      )}
+    </div>
+  );
+};
+
+export const TimeInput = ({ label, ...props }) => {
+  const [field, meta, helpers] = useField(props);
+  return (
+    <div className={cn(s.wrapper, "wrapper")}>
+      <TimePicker
+        name={field.name}
+        defaultValue={meta.initialValue}
+        label={label}
+        onChange={(time) => helpers.setValue(time)}
+        onBlur={() => helpers.setTouched(true)}
+      />
+      {meta.touched && meta.error && (
+        <span className={cn(s.warn, "warn")}>{meta.error}</span>
       )}
     </div>
   );
@@ -96,6 +117,10 @@ export const Checkbox = ({ label, ...props }) => {
       {label}
     </label>
   );
+};
+
+TimeInput.propTypes = {
+  label: PropTypes.string.isRequired,
 };
 
 DropDown.propTypes = {
