@@ -97,6 +97,7 @@ export const TimePicker = ({
           name="hh"
           value={hh}
           onChange={(e) => handleChangeHours(e.target)}
+          onBlur={onBlur}
           mask={hoursMask}
           formatChars={formatChars}
           maskChar=""
@@ -108,6 +109,7 @@ export const TimePicker = ({
           name="mm"
           value={mm}
           onChange={(e) => handleChangeMinutes(e.target)}
+          onBlur={onBlur}
           mask={minutesMask}
           formatChars={formatChars}
           maskChar=""
