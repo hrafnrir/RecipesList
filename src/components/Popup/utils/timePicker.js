@@ -1,10 +1,7 @@
 export const getTimeElements = (type, current, getClass, handleChangeTime) => {
-  const max = type === "hours" ? 24 : 60;
-  let elements = [];
-
-  for (let i = 0; i < max; i++) {
+  return new Array(type === "hours" ? 24 : 60).fill().map((_, i) => {
     const n = i < 10 ? `0${i}` : `${i}`;
-    elements.push(
+    return (
       <div
         className={getClass(n === current)}
         key={n}
@@ -19,7 +16,5 @@ export const getTimeElements = (type, current, getClass, handleChangeTime) => {
         {n}
       </div>
     );
-  }
-
-  return elements;
+  });
 };

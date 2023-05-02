@@ -3,7 +3,7 @@ import InputMask from "react-input-mask";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
-import { getTimeElements } from "./TimeElements.jsx";
+import { getTimeElements } from "./utils/timePicker.js";
 
 import s from "./styles/TimePicker.module.scss";
 
@@ -46,20 +46,22 @@ export const TimePicker = ({
     };
   }, [isSelectOpen, onBlur]);
 
-  const handleChangeTime = (elem) => {
-    const name = elem.name || (elem.id.includes("hh") ? "hh" : "mm");
+  const handleChangeHours = (elem) => {
     const value =
       elem.dataset.value ||
       (elem.value[1] ? elem.value : elem.value[0] ? `${elem.value}0` : "00");
 
-    setTime((prevState) => ({ ...prevState, [name]: value }));
-    const timeValues = name === "hh" ? `${value}:${mm}` : `${hh}:${value}`;
-    onChange(timeValues);
+    setTime((prevState) => ({ ...prevState, hh: value }));
+    onChange(`${value}:${mm}`);
   };
 
-  const handleBlurTimeInput = (elem, param) => {
-    ![param][1] && handleChangeTime(elem);
-    onBlur();
+  const handleChangeMinutes = (elem) => {
+    const value =
+      elem.dataset.value ||
+      (elem.value[1] ? elem.value : elem.value[0] ? `${elem.value}0` : "00");
+
+    setTime((prevState) => ({ ...prevState, mm: value }));
+    onChange(`${hh}:${value}`);
   };
 
   const getOptionClass = (isSelected) =>
@@ -69,13 +71,13 @@ export const TimePicker = ({
     "hours",
     hh,
     getOptionClass,
-    handleChangeTime
+    handleChangeHours
   );
   const minutesElements = getTimeElements(
     "minutes",
     mm,
     getOptionClass,
-    handleChangeTime
+    handleChangeMinutes
   );
 
   const formatChars = {
@@ -94,8 +96,7 @@ export const TimePicker = ({
           type="text"
           name="hh"
           value={hh}
-          onChange={(e) => handleChangeTime(e.target)}
-          onBlur={(e) => handleBlurTimeInput(e.target, "hh")}
+          onChange={(e) => handleChangeHours(e.target)}
           mask={hoursMask}
           formatChars={formatChars}
           maskChar=""
@@ -106,8 +107,7 @@ export const TimePicker = ({
           type="text"
           name="mm"
           value={mm}
-          onChange={(e) => handleChangeTime(e.target)}
-          onBlur={(e) => handleBlurTimeInput(e.target, "mm")}
+          onChange={(e) => handleChangeMinutes(e.target)}
           mask={minutesMask}
           formatChars={formatChars}
           maskChar=""
