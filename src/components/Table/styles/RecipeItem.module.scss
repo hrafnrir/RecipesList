@@ -128,6 +128,7 @@
     color: transparent;
     image: var(--fast-view-btn);
     repeat: no-repeat;
+    size: contain;
     position: left;
   }
 
@@ -142,6 +143,33 @@
 
     &:hover {
       background-image: var(--fast-view-btn_active);
+    }
+  }
+}
+
+.editBtn {
+  width: 100%;
+  height: 26px;
+  vertical-align: middle;
+  background: {
+    color: transparent;
+    image: var(--edit-btn);
+    repeat: no-repeat;
+    size: contain;
+    position: right;
+  }
+
+  transition: background-image 0.4s linear;
+
+  &:active {
+    background-image: var(--edit-btn_active);
+  }
+
+  @include breakpoint(large) {
+    cursor: pointer;
+
+    &:hover {
+      background-image: var(--edit-btn_active);
     }
   }
 }

@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 
+import { getMinutes } from "../../utils/timeConversion.js";
+
 import s from "./styles/RecipePopup.module.scss";
 
 const RecipePopup = ({ recipe }) => {
@@ -15,10 +17,11 @@ const RecipePopup = ({ recipe }) => {
     recipeText,
   } = recipe;
 
+  const cookingTime = getMinutes(time);
   const recipeIngredients = ingredients.map((item, index) => (
-    <li key={index} className={s.ingredient}>
-      {item.toLowerCase()};
-    </li>
+    <span key={index} className={s.ingredient}>
+      {item.value}
+    </span>
   ));
 
   return (
@@ -33,7 +36,7 @@ const RecipePopup = ({ recipe }) => {
           </div>
           <div className={s.prop}>
             {"cooking time (min):  "}
-            <span className={s.value}>{time}</span>
+            <span className={s.value}>{cookingTime}</span>
           </div>
           <div className={s.prop}>
             meal of the day: <span className={s.value}>{meal}</span>
@@ -45,7 +48,7 @@ const RecipePopup = ({ recipe }) => {
       </div>
       <div className={s.block}>
         <h3 className={s.title}>ingredients:</h3>
-        <ul>{recipeIngredients}</ul>
+        <div className={s.ingredientList}>{recipeIngredients}</div>
       </div>
       <div className={s.block}>
         <h3 className={s.title}>the recipe:</h3>

@@ -59,6 +59,7 @@
   color: var(--first-text-color);
   background-color: transparent;
   border-bottom: 1px var(--first-text-color) solid;
+  border-radius: 0;
   transition: border-color 0.2s linear;
 
   &::placeholder {
@@ -88,6 +89,36 @@
       height: 36px;
     }
   }
+
+  /* &.timeinput::-webkit-datetime-edit-hour-field {
+    margin-right: 4px;
+    padding: 0;
+
+    @include breakpoint(medium) {
+      margin-right: 6px;
+    }
+  }
+
+  &.timeinput::-webkit-datetime-edit-minute-field {
+    margin-left: 4px;
+    padding: 0;
+
+    @include breakpoint(medium) {
+      margin-left: 6px;
+    }
+  }
+
+  &.timeinput::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+
+  &.timeinput::-webkit-clear-button {
+    display: none;
+  }
+
+  &.timeinput::-webkit-inner-spin-button {
+    display: none;
+  } */
 }
 
 .checkbox {

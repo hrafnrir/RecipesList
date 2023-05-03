@@ -16,6 +16,11 @@
 .submitWrapper {
   @extend %add-recipe-button;
 
+  &_editRecipe {
+    @extend %update-recipe-button;
+    left: calc(50% - (var(--width) / 2) - var(--width));
+  }
+
   & .submitBtn {
     position: absolute;
     top: 0;
@@ -28,5 +33,15 @@
     @include breakpoint(large) {
       cursor: pointer;
     }
+  }
+}
+
+.deleteBtn {
+  @extend %delete-recipe-button;
+
+  left: calc(50% - (var(--width) / 2) + var(--width));
+
+  @include breakpoint(large) {
+    cursor: pointer;
   }
 }

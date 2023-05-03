@@ -4,22 +4,34 @@ import RecipeForm from "./RecipeForm.jsx";
 
 import s from "./styles/FormPopup.module.scss";
 
-const FormPopup = ({ closePopup }) => {
+const FormPopup = ({ type, closePopup, recipe }) => {
+  const header =
+    type === "addRecipe"
+      ? {
+          heading: "Got idea? Let's make a recipe! 🥦",
+          description:
+            "Please fill in the input fields below and submit your recipe.",
+        }
+      : {
+          heading: recipe.name,
+          description: "Edit your recipe or delete it.",
+        };
+
   return (
     <>
       <div className={s.header}>
-        <h2 className={s.heading}>{`Got idea? Let's make a recipe! 🥦`}</h2>
-        <p className={s.description}>
-          Please fill in the input fields below and submit your recipe.
-        </p>
+        <h2 className={s.heading}>{header.heading}</h2>
+        <p className={s.description}>{header.description}</p>
       </div>
-      <RecipeForm closePopup={closePopup} />
+      <RecipeForm type={type} closePopup={closePopup} recipe={recipe} />
     </>
   );
 };
 
 FormPopup.propTypes = {
+  type: PropTypes.string.isRequired,
   closePopup: PropTypes.func.isRequired,
+  recipe: PropTypes.object,
 };
 
 export default FormPopup;

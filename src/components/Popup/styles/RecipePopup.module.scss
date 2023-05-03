@@ -107,17 +107,58 @@
   @include breakpoint(medium) {
     margin-bottom: 18px;
   }
+
+  .block:has(.ingredientList) & {
+    margin-bottom: 6px;
+
+    @include breakpoint(medium) {
+      margin-bottom: 10px;
+    }
+  }
 }
 
-.ingredient,
-.recipeText {
+.recipeText,
+.ingredient {
   @include p-normal;
 
   color: var(--first-text-color);
 }
 
+.ingredientList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .ingredient {
+  margin: {
+    top: 8px;
+    right: 8px;
+  }
+
+  padding: 6px 10px;
+  background-color: var(--light-blue-accent-color);
+  border-radius: 4px;
+
+  @include breakpoint(medium) {
+    margin: {
+      top: 12px;
+      right: 12px;
+    }
+
+    border-radius: 8px;
+  }
+
   @include breakpoint(large) {
     margin-bottom: 2px;
+    transition: 0.4s linear;
+  }
+
+  &:hover {
+    @include breakpoint(large) {
+      cursor: default;
+      color: var(--main-background-color);
+      background-color: var(--accent-color);
+      transition: 0.4s linear;
+    }
   }
 }

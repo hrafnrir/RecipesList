@@ -6,8 +6,6 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "start": "cross-env SERVE=true webpack serve",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d public",
     "eslint": "npx eslint --ext .jsx,.js src/"
   },
   "dependencies": {
@@ -17,6 +15,7 @@
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-input-mask": "^2.0.4",
     "react-redux": "^8.0.5",
     "react-select": "^5.7.2",
     "redux": "^4.2.1",
@@ -40,7 +39,6 @@
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.1",
     "node-sass": "^7.0.1",

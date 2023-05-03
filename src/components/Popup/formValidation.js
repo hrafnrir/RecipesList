@@ -1,8 +1,8 @@
 import * as Yup from "yup";
 
 const emptyError = (field) => `${field} can't be blank.`;
-const maxLengthError = (maxLength) =>
-  `Must be ${maxLength} characters or less.`;
+const maxLengthError = (maxLength, item = "characters") =>
+  `Must be ${maxLength} ${item} or less.`;
 const numberError = (field, verb) =>
   `${field} ${verb} incorrect. Enter ${field.toLowerCase()} in the format XXX.`;
 
@@ -13,14 +13,15 @@ export const validation = Yup.object({
 
   type: Yup.string().required(emptyError("Dish type")),
 
-  ingredients: Yup.string()
-    .max(250, maxLengthError(250))
+  ingredients: Yup.array()
+    .max(30, maxLengthError(30, "ingredients"))
+    .min(1, emptyError("Ingredients"))
     .required(emptyError("Ingredients")),
 
   meal: Yup.string().required(emptyError("Meal")),
 
-  time: Yup.number()
-    .typeError(numberError("The time", "is"))
+  time: Yup.string()
+    .matches(/[^0:]/g, emptyError("Cooking time"))
     .required(emptyError("Cooking time")),
 
   kcal: Yup.number()

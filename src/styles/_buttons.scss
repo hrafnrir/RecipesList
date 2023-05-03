@@ -1,49 +1,115 @@
 @import "./typography";
 
-%add-recipe-button {
+%pseudo {
+  position: absolute;
+  content: "";
+  top: 47%;
+  left: 28%;
+  width: calc(var(--width) - 56%);
+  height: 3px;
+  border-radius: 3px;
+  background-color: var(--main-background-color);
+  transform: rotate(var(--deg));
+  transition: transform 1s ease;
+}
+
+%form-button {
   --width: 36px;
+
+  @include breakpoint(medium) {
+    --width: 50px;
+  }
 
   position: absolute;
   bottom: calc(-1 * var(--width) / 2);
   left: calc(50% - (var(--width) / 2));
   width: var(--width);
   height: var(--width);
-  background-color: var(--accent-color);
   border-radius: 50%;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.16);
 
-  @include breakpoint(medium) {
-    --width: 50px;
+  &::before {
+    @extend %pseudo;
   }
+
+  @include breakpoint(large) {
+    cursor: pointer;
+  }
+
+  @include breakpoint(large) {
+    &:hover::before,
+    &:hover::after {
+      transform: rotate(calc(var(--deg) + 180deg));
+    }
+  }
+}
+
+%add-recipe-button {
+  @extend %form-button;
+
+  background-color: var(--accent-color);
 
   &::before {
     --deg: 0deg;
   }
 
   &::after {
+    @extend %pseudo;
+
     --deg: 90deg;
   }
 
-  &::before,
-  &::after {
-    position: absolute;
-    content: "";
-    top: 47%;
-    left: 28%;
-    width: calc(var(--width) - 56%);
-    height: 3px;
-    border-radius: 3px;
-    background-color: var(--main-background-color);
-    transform: rotate(var(--deg));
-    transition: transform 1s ease;
-  }
-
   @include breakpoint(large) {
-    cursor: pointer;
-
     &:hover::before,
     &:hover::after {
       transform: rotate(calc(var(--deg) + 180deg));
+    }
+  }
+}
+
+%update-recipe-button {
+  @extend %form-button;
+
+  background-color: var(--tag-color);
+
+  &::before {
+    --deg: 45deg;
+
+    top: 52%;
+    left: 22%;
+    width: calc(var(--width) - 68%);
+
+    @include breakpoint(large) {
+      left: 20%;
+    }
+  }
+
+  &::after {
+    @extend %pseudo;
+
+    --deg: 135deg;
+
+    top: 48%;
+    left: 39%;
+    width: calc(var(--width) - 58%);
+  }
+
+  @include breakpoint(large) {
+    &:hover::before,
+    &:hover::after {
+      transform: rotate(calc(var(--deg) + 180deg));
+    }
+  }
+}
+
+%delete-recipe-button {
+  @extend %form-button;
+
+  background-color: var(--warning-color);
+
+  @include breakpoint(large) {
+    &:hover::before {
+      transform: rotate(180deg);
     }
   }
 }
