@@ -4,6 +4,7 @@ import { selectFilteredRecipes } from "../../model/selectors.js";
 
 import TableHeader from "./TableHeader.jsx";
 import RecipeItem from "./RecipeItem.jsx";
+import EmptyList from "../EmptyList/EmptyList.jsx";
 
 const Table = () => {
   const recipes = useSelector(selectFilteredRecipes).map((item, index) => (
@@ -12,8 +13,14 @@ const Table = () => {
 
   return (
     <>
-      <TableHeader />
-      {recipes}
+      {recipes.length ? (
+        <>
+          <TableHeader />
+          {recipes}
+        </>
+      ) : (
+        <EmptyList type="search" />
+      )}
     </>
   );
 };
