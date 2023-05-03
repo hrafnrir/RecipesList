@@ -39,4 +39,5 @@ body[data-theme="light"] {
   --close-popup-btn: url("../assets/icons/lightTheme/close-popup-btn.svg");
   --close-popup-btn_active: url("../assets/icons/lightTheme/close-popup-btn_active.svg");
   --close-popup-btn_mob: url("../assets/icons/lightTheme/close-popup-btn_mob.svg");
+  --search: url("../assets/icons/lightTheme/search.svg");
 }
