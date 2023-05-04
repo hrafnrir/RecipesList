@@ -20,7 +20,7 @@ const App = () => {
       <div className={s.root}>
         <div className={s.mainBlock}>
           <Header />
-          {isListEmpty ? <EmptyList /> : <Table />}
+          {isListEmpty ? <EmptyList type="main" /> : <Table />}
         </div>
         <button
           className={s.addRecipeBtn}

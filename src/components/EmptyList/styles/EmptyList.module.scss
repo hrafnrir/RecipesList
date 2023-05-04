@@ -32,6 +32,10 @@
 
     padding-bottom: 160px;
   }
+
+  &_search {
+    background-image: var(--empty-list-search);
+  }
 }
 
 .text {

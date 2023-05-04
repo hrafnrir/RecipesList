@@ -28,6 +28,7 @@ body[data-theme="light"] {
   --edit-btn: url("../assets/icons/lightTheme/edit-btn.svg");
   --edit-btn_active: url("../assets/icons/lightTheme/edit-btn_active.svg");
   --empty-list: url("../assets/icons/lightTheme/empty-list-icon.png");
+  --empty-list-search: url("../assets/icons/lightTheme/empty-list-search-icon.png");
   --select-arrow: url("../assets/icons/lightTheme/select-arrow.svg");
   --select-arrow_active: url("../assets/icons/lightTheme/select-arrow_active.svg");
   --clock: url("../assets/icons/lightTheme/clock.svg");
@@ -39,4 +40,5 @@ body[data-theme="light"] {
   --close-popup-btn: url("../assets/icons/lightTheme/close-popup-btn.svg");
   --close-popup-btn_active: url("../assets/icons/lightTheme/close-popup-btn_active.svg");
   --close-popup-btn_mob: url("../assets/icons/lightTheme/close-popup-btn_mob.svg");
+  --search: url("../assets/icons/lightTheme/search.svg");
 }
