@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { getMinutes } from "../../utils/timeConversion.js";
@@ -8,7 +9,7 @@ import Popup from "../Popup/Popup.jsx";
 
 import s from "./styles/RecipeItem.module.scss";
 
-const RecipeItem = ({ recipe }) => {
+const RecipeItem = ({ recipe, index }) => {
   const [isPopupOpen, setPopup] = useState({ fastView: false, edit: false });
 
   const { name, isVegan, type, meal, kcal, time } = recipe;
@@ -42,6 +43,7 @@ const RecipeItem = ({ recipe }) => {
             }
           ></button>
         </div>
+        <Link to={`recipes/${index}`} className={s.link}></Link>
       </div>
 
       {isPopupOpen.fastView &&
@@ -73,6 +75,7 @@ const RecipeItem = ({ recipe }) => {
 
 RecipeItem.propTypes = {
   recipe: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default RecipeItem;

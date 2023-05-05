@@ -8,7 +8,7 @@ import EmptyList from "../EmptyList/EmptyList.jsx";
 
 const Table = () => {
   const recipes = useSelector(selectFilteredRecipes).map((item, index) => (
-    <RecipeItem key={index} recipe={item} />
+    <RecipeItem key={index} recipe={item} index={++index} />
   ));
 
   return (
