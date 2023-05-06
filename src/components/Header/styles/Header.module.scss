@@ -29,6 +29,8 @@
 .heading {
   @include h1;
 
+  color: var(--first-text-color);
+
   @include breakpoint(medium) {
     display: inline-block;
   }
