@@ -7,7 +7,6 @@ const initialState = {
   dishTypes,
   mealsOfTheDay,
   ingredients,
-  filter: "",
 };
 
 const recipesSlice = createSlice({
@@ -27,8 +26,6 @@ const recipesSlice = createSlice({
         recipeText: action.payload.recipeText,
         isVegan: action.payload.isVegan,
       });
-
-      state.filter !== "" && (state.filter = "");
     },
 
     updateRecipe(state, action) {
@@ -42,14 +39,9 @@ const recipesSlice = createSlice({
         ({ id }) => id !== action.payload.id
       );
     },
-
-    filterRecipes(state, action) {
-      state.filter = action.payload.filter;
-    },
   },
 });
 
-export const { addRecipe, updateRecipe, deleteRecipe, filterRecipes } =
-  recipesSlice.actions;
+export const { addRecipe, updateRecipe, deleteRecipe } = recipesSlice.actions;
 
 export default recipesSlice.reducer;

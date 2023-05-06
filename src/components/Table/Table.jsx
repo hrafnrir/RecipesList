@@ -1,15 +1,23 @@
 import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
-import { selectFilteredRecipes } from "../../model/selectors.js";
+import { selectRecipes } from "../../model/selectors.js";
 
 import TableHeader from "./TableHeader.jsx";
 import RecipeItem from "./RecipeItem.jsx";
 import EmptyList from "../EmptyList/EmptyList.jsx";
 
 const Table = () => {
-  const recipes = useSelector(selectFilteredRecipes).map((item, index) => (
-    <RecipeItem key={index} recipe={item} index={++index} />
-  ));
+  const [searchParams] = useSearchParams();
+  const searchQuery = searchParams.get("search") || "";
+
+  const recipes = useSelector(selectRecipes)
+    .filter((item) =>
+      item.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
+    )
+    .map((item, index) => (
+      <RecipeItem key={index} recipe={item} index={++index} />
+    ));
 
   return (
     <>
@@ -19,7 +27,7 @@ const Table = () => {
           {recipes}
         </>
       ) : (
-        <EmptyList type="search" />
+        <EmptyList type="search" searchQuery={searchQuery} />
       )}
     </>
   );
