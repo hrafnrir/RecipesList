@@ -20,3 +20,6 @@ export const selectOptions = (name) =>
         return { label: item, value: item };
       })
   );
+
+export const selectRecipeByIndex = (index) => (state) =>
+  selectRecipes(state)[--index];
