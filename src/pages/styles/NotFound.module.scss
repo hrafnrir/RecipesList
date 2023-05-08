@@ -1,0 +1,63 @@
+@import "../../styles/breakpoints", "../../styles/typography",
+  "../../styles/animations", "../../styles/buttons";
+
+.root {
+  text-align: center;
+  padding-bottom: 18px;
+
+  @include breakpoint(medium) {
+    padding-bottom: 24px;
+  }
+
+  @include breakpoint(large) {
+    padding-bottom: 32px;
+  }
+}
+
+.heading {
+  @include h1;
+
+  font-size: 82px !important;
+  line-height: 100%;
+
+  @include breakpoint(medium) {
+    font-size: 152px !important;
+  }
+}
+
+.char {
+  &:first-child {
+    @include coloring(first);
+  }
+
+  &:nth-child(2) {
+    @include coloring(second);
+  }
+
+  &:last-child {
+    @include coloring(third);
+  }
+}
+
+.description {
+  @include p-normal;
+
+  margin: {
+    top: 16px;
+    bottom: 24px;
+  }
+
+  color: var(--second-text-color);
+
+  @include breakpoint(medium) {
+    margin-bottom: 32px;
+  }
+
+  @include breakpoint(large) {
+    margin-bottom: 36px;
+  }
+}
+
+.backButton {
+  @extend %text-button;
+}

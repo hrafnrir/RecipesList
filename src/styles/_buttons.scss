@@ -166,3 +166,30 @@
     border-radius: 12px;
   }
 }
+
+%text-button {
+  @include p-small;
+
+  display: inline-block;
+  padding: 14px 28px;
+  text-transform: uppercase;
+  color: var(--main-text-color);
+  background-color: var(--light-blue-accent-color);
+  border-radius: 10px;
+  transition: 0.2s linear;
+
+  @include breakpoint(medium) {
+    padding: 16px 30px;
+  }
+
+  &:hover {
+    color: var(--main-background-color);
+    background-color: var(--accent-color);
+    transition: 0.2s linear;
+  }
+
+  &:active {
+    color: var(--main-background-color);
+    background-color: var(--accent-color);
+  }
+}

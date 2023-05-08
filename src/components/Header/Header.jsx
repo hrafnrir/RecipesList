@@ -20,10 +20,10 @@ const Header = () => {
 
   return (
     <div className={s.root}>
-      <Link to={"/"}>
+      <Link to="/">
         <h1 className={s.heading}>Recipes List</h1>
       </Link>
-      {isListEmpty || (!pathname.includes("recipes") && <SearchField />)}
+      {isListEmpty || (!pathname[1] && <SearchField />)}
     </div>
   );
 };
