@@ -11,5 +11,5 @@ export const selectOptions = (name) =>
       })
   );
 
-export const selectRecipeByIndex = (index) => (state) =>
-  selectRecipes(state)[--index];
+export const selectRecipeById = (id) => (state) =>
+  selectRecipes(state).find((item) => item.id === id);

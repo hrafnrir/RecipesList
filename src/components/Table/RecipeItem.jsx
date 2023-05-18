@@ -9,10 +9,10 @@ import Popup from "../Popup/Popup.jsx";
 
 import s from "./styles/RecipeItem.module.scss";
 
-const RecipeItem = ({ recipe, index }) => {
+const RecipeItem = ({ recipe }) => {
   const [isPopupOpen, setPopup] = useState({ fastView: false, edit: false });
 
-  const { name, isVegan, type, meal, kcal, time } = recipe;
+  const { id, name, isVegan, type, meal, kcal, time } = recipe;
 
   const cookingTime = getMinutes(time);
 
@@ -43,7 +43,7 @@ const RecipeItem = ({ recipe, index }) => {
             }
           ></button>
         </div>
-        <Link to={`recipes/${index}`} className={s.link}></Link>
+        <Link to={`recipes/${id}`} className={s.link}></Link>
       </div>
 
       {isPopupOpen.fastView &&
@@ -75,7 +75,6 @@ const RecipeItem = ({ recipe, index }) => {
 
 RecipeItem.propTypes = {
   recipe: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
 };
 
 export default RecipeItem;

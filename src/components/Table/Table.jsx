@@ -15,9 +15,7 @@ const Table = () => {
     .filter((item) =>
       item.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
     )
-    .map((item, index) => (
-      <RecipeItem key={index} recipe={item} index={++index} />
-    ));
+    .map((item, index) => <RecipeItem key={index} recipe={item} />);
 
   return (
     <>

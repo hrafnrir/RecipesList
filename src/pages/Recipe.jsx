@@ -1,14 +1,14 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { selectRecipeByIndex } from "../model/selectors.js";
+import { selectRecipeById } from "../model/selectors.js";
 import { getMinutes } from "../utils/timeConversion.js";
 
 import s from "./styles/Recipe.module.scss";
 
 export const Recipe = () => {
-  const { index } = useParams();
-  const recipe = useSelector(selectRecipeByIndex(index));
+  const { id } = useParams();
+  const recipe = useSelector(selectRecipeById(id));
   const {
     name,
     isVegan,
