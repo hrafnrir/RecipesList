@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 import cn from "classnames";
@@ -35,6 +36,8 @@ const clearValues = {
 };
 
 const RecipeForm = ({ type, closePopup, recipe }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const dispatch = useDispatch();
 
   const dishTypeOptions = useSelector(selectOptions("dishTypes"));
@@ -44,9 +47,13 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
   const initialValues = type === "addRecipe" ? clearValues : recipe;
 
   const handleSubmit = (values) => {
-    type === "addRecipe"
-      ? dispatch(addRecipe({ ...values }))
-      : dispatch(updateRecipe({ ...values }));
+    if (type === "addRecipe") {
+      searchParams.get("search") && setSearchParams("");
+      dispatch(addRecipe({ ...values }));
+    } else {
+      dispatch(updateRecipe({ ...values }));
+    }
+
     closePopup();
   };
 
