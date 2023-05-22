@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 import FormPopup from "./FormPopup.jsx";
-import RecipePopup from "./RecipePopup.jsx";
+import RecipeCommonComponent from "./RecipeCommonComponent.jsx";
 
 import s from "./styles/Popup.module.scss";
 
@@ -11,7 +11,7 @@ const Popup = ({ type, closePopup, recipe }) => {
       <div className={s.mainWrapper}>
         <div className={s.mainBlock}>
           {type === "openRecipe" ? (
-            <RecipePopup recipe={recipe} />
+            <RecipeCommonComponent recipe={recipe} />
           ) : (
             <FormPopup type={type} closePopup={closePopup} recipe={recipe} />
           )}

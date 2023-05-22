@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 
 import { getMinutes } from "../../utils/timeConversion.js";
 
-import s from "./styles/RecipePopup.module.scss";
+import s from "./styles/RecipeCommonComponent.module.scss";
 
-const RecipePopup = ({ recipe }) => {
+const RecipeCommonComponent = ({ recipe }) => {
   const {
     name,
     isVegan,
@@ -58,8 +58,8 @@ const RecipePopup = ({ recipe }) => {
   );
 };
 
-RecipePopup.propTypes = {
+RecipeCommonComponent.propTypes = {
   recipe: PropTypes.object.isRequired,
 };
 
-export default RecipePopup;
+export default RecipeCommonComponent;

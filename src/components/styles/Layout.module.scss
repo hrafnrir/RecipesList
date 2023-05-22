@@ -1,4 +1,4 @@
-@import "./styles/breakpoints", "./styles/containers", "./styles/buttons";
+@import "../../styles/breakpoints", "../../styles/containers";
 
 .root {
   @include container(large);
@@ -20,8 +20,4 @@
     border-radius: 26px;
     box-shadow: 0px 0px 90px rgba(0, 0, 0, 0.08);
   }
-}
-
-.addRecipeBtn {
-  @extend %add-recipe-button;
 }

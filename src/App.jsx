@@ -1,41 +1,27 @@
-import { useState } from "react";
-import { createPortal } from "react-dom";
-import { useSelector } from "react-redux";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 
-import { selectRecipes } from "./model/selectors.js";
+import Layout from "./components/Layout.jsx";
+import { Home as HomePage } from "./pages/Home.jsx";
+import { Recipe as RecipePage } from "./pages/Recipe.jsx";
+import { NotFound as NotFoundPage } from "./pages/NotFound.jsx";
 
-import Header from "./components/Header/Header.jsx";
-import Table from "./components/Table/Table.jsx";
-import Popup from "./components/Popup/Popup.jsx";
-import EmptyList from "./components/EmptyList/EmptyList.jsx";
-
-import s from "./App.module.scss";
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<HomePage />} />
+      <Route path="recipes/:id" element={<RecipePage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Route>
+  )
+);
 
 const App = () => {
-  const isListEmpty = !useSelector(selectRecipes).length;
-  const [isPopupOpen, setPopup] = useState(false);
-
-  return (
-    <>
-      <div className={s.root}>
-        <div className={s.mainBlock}>
-          <Header />
-          {isListEmpty ? <EmptyList type="main" /> : <Table />}
-        </div>
-        <button
-          className={s.addRecipeBtn}
-          onClick={() => {
-            setPopup(true);
-          }}
-        ></button>
-      </div>
-      {isPopupOpen &&
-        createPortal(
-          <Popup type="addRecipe" closePopup={() => setPopup(false)} />,
-          document.getElementById("root")
-        )}
-    </>
-  );
+  return <RouterProvider router={router} />;
 };
 
 export default App;

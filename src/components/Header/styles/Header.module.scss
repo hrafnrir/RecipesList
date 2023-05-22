@@ -29,67 +29,9 @@
 .heading {
   @include h1;
 
+  color: var(--first-text-color);
+
   @include breakpoint(medium) {
     display: inline-block;
-  }
-}
-
-.search {
-  @include p-medium;
-
-  margin-top: 8px;
-  padding: {
-    top: 8px;
-    bottom: 12px;
-    left: 36px;
-    right: 8px;
-  }
-
-  width: 200px;
-  color: var(--first-text-color);
-  background: {
-    color: transparent;
-    image: var(--search);
-    repeat: no-repeat;
-    position: center left;
-    size: 24px;
-  }
-
-  border-bottom: 1px var(--border-color) solid;
-  border-radius: 0;
-  transition: border-color 0.2s linear;
-
-  @include breakpoint(medium) {
-    margin: {
-      top: 0;
-      left: 26px;
-    }
-
-    padding: {
-      top: 4px;
-      bottom: 4px;
-      left: 28px;
-      right: 8px;
-    }
-
-    background-size: 18px;
-  }
-
-  @include breakpoint(large) {
-    margin-left: 38px;
-  }
-
-  &::placeholder {
-    color: var(--second-text-color);
-  }
-
-  &:focus {
-    color: var(--first-text-color);
-    border-color: var(--accent-color);
-    transition: border-color 0.2s linear;
-
-    &::placeholder {
-      opacity: 0;
-    }
   }
 }

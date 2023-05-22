@@ -1,0 +1,20 @@
+@import "../../styles/breakpoints";
+
+.root {
+  padding: 0 22px;
+
+  @include breakpoint(medium) {
+    padding: {
+      left: 44px;
+      right: 44px;
+      bottom: 18px;
+    }
+  }
+
+  @include breakpoint(large) {
+    padding: {
+      left: 66px;
+      right: 66px;
+    }
+  }
+}

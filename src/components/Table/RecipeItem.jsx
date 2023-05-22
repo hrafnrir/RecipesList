@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { getMinutes } from "../../utils/timeConversion.js";
@@ -11,7 +12,7 @@ import s from "./styles/RecipeItem.module.scss";
 const RecipeItem = ({ recipe }) => {
   const [isPopupOpen, setPopup] = useState({ fastView: false, edit: false });
 
-  const { name, isVegan, type, meal, kcal, time } = recipe;
+  const { id, name, isVegan, type, meal, kcal, time } = recipe;
 
   const cookingTime = getMinutes(time);
 
@@ -42,6 +43,7 @@ const RecipeItem = ({ recipe }) => {
             }
           ></button>
         </div>
+        <Link to={`recipes/${id}`} className={s.link}></Link>
       </div>
 
       {isPopupOpen.fastView &&

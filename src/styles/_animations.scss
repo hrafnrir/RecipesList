@@ -1,0 +1,38 @@
+@mixin coloring($n) {
+  --color-1: var(--warning-color);
+  --color-2: var(--tag-color);
+  --color-3: var(--accent-color);
+
+  @if $n == first {
+    --first-color: var(--color-1);
+    --second-color: var(--color-2);
+    --third-color: var(--color-3);
+  } @else if $n == second {
+    --first-color: var(--color-3);
+    --second-color: var(--color-1);
+    --third-color: var(--color-2);
+  } @else if $n == third {
+    --first-color: var(--color-2);
+    --second-color: var(--color-3);
+    --third-color: var(--color-1);
+  }
+
+  @keyframes coloring-animation {
+    0%,
+    33% {
+      color: var(--first-color);
+    }
+
+    34%,
+    67% {
+      color: var(--second-color);
+    }
+
+    68%,
+    100% {
+      color: var(--third-color);
+    }
+  }
+
+  animation: coloring-animation 1.6s linear infinite;
+}
