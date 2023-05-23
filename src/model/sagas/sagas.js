@@ -17,7 +17,6 @@ const instance = axios.create({
 
 function* fetchRecipes() {
   yield put(addLoading(true));
-  yield put(addError(null));
   try {
     const resp = yield call(async () => await instance(""));
     yield put(getRecipes(resp.data));
@@ -30,7 +29,6 @@ function* fetchRecipes() {
 
 function* fetchNewRecipe({ payload }) {
   yield put(addLoading(true));
-  yield put(addError(null));
   try {
     const resp = yield call(async () => await instance.post("", payload));
     yield put(addRecipe(resp.data));
@@ -43,7 +41,6 @@ function* fetchNewRecipe({ payload }) {
 
 function* fetchUpdatedRecipe({ payload }) {
   yield put(addLoading(true));
-  yield put(addError(null));
   try {
     const resp = yield call(
       async () => await instance.put(payload.id, payload)
@@ -58,7 +55,6 @@ function* fetchUpdatedRecipe({ payload }) {
 
 function* fetchDeletedRecipe({ payload }) {
   yield put(addLoading(true));
-  yield put(addError(null));
   try {
     yield call(async () => await instance.delete(payload));
     yield put(deleteRecipe(payload));

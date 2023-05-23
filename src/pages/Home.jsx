@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import { addError } from "../model/slices/appSlice.js";
 import { selectRecipes } from "../model/recipesSelectors.js";
 import { selectError } from "../model/appSelectors.js";
 import sagaActions from "../model/sagas/actions.js";
@@ -29,6 +30,11 @@ export const Home = () => {
     error && setPopup((prevState) => ({ ...prevState, error: true }));
   }, [error]);
 
+  const handleCloseErrorPopup = () => {
+    setPopup((prevState) => ({ ...prevState, error: false }));
+    dispatch(addError(null));
+  };
+
   return (
     <>
       {isListEmpty ? <EmptyList type="main" /> : <Table />}
@@ -52,12 +58,7 @@ export const Home = () => {
 
       {isPopupOpen.error &&
         createPortal(
-          <ErrorPopup
-            message={error}
-            closePopup={() =>
-              setPopup((prevState) => ({ ...prevState, error: false }))
-            }
-          />,
+          <ErrorPopup message={error} closePopup={handleCloseErrorPopup} />,
           document.getElementById("root")
         )}
     </>
