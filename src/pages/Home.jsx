@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { selectRecipes } from "../model/selectors.js";
+import sagaActions from "../model/sagas/actions.js";
 
 import Table from "../components/Table/Table.jsx";
 import Popup from "../components/Popup/Popup.jsx";
@@ -13,6 +14,12 @@ import s from "./styles/Home.module.scss";
 export const Home = () => {
   const isListEmpty = !useSelector(selectRecipes).length;
   const [isPopupOpen, setPopup] = useState(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: sagaActions.GET_RECIPES });
+  }, [dispatch]);
 
   return (
     <>

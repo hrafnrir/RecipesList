@@ -1,9 +1,9 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { dishTypes, mealsOfTheDay, ingredients } from "./formOptions";
 
-const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+import { dishTypes, mealsOfTheDay, ingredients } from "./formOptions.js";
+
 const initialState = {
-  recipes,
+  recipes: [],
   dishTypes,
   mealsOfTheDay,
   ingredients,
@@ -13,6 +13,10 @@ const recipesSlice = createSlice({
   name: "recipes",
   initialState,
   reducers: {
+    getRecipes(state, action) {
+      state.recipes = action.payload;
+    },
+
     addRecipe(state, action) {
       state.recipes.unshift({
         id: nanoid(),
@@ -42,6 +46,7 @@ const recipesSlice = createSlice({
   },
 });
 
-export const { addRecipe, updateRecipe, deleteRecipe } = recipesSlice.actions;
+export const { getRecipes, addRecipe, updateRecipe, deleteRecipe } =
+  recipesSlice.actions;
 
 export default recipesSlice.reducer;
