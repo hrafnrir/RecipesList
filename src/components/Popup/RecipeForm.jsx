@@ -1,16 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
 import { useSearchParams } from "react-router-dom";
 import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
-import {
-  addRecipe,
-  updateRecipe,
-  deleteRecipe,
-} from "../../model/slices/recipesSlice.js";
+import { updateRecipe, deleteRecipe } from "../../model/slices/recipesSlice.js";
 import { selectOptions } from "../../model/selectors.js";
 import { validation } from "./formValidation.js";
+import sagaActions from "../../model/sagas/actions.js";
 
 import {
   TextInput,
@@ -49,7 +47,10 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
   const handleSubmit = (values) => {
     if (type === "addRecipe") {
       searchParams.get("search") && setSearchParams("");
-      dispatch(addRecipe({ ...values }));
+      dispatch({
+        type: sagaActions.ADD_NEW_RECIPE,
+        payload: { id: nanoid(), ...values },
+      });
     } else {
       dispatch(updateRecipe({ ...values }));
     }
