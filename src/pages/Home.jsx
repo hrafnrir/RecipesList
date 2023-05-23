@@ -9,12 +9,12 @@ import sagaActions from "../model/sagas/actions.js";
 import Table from "../components/Table/Table.jsx";
 import Popup from "../components/Popup/Popup.jsx";
 import EmptyList from "../components/EmptyList/EmptyList.jsx";
-import Error from "../components/Error/Error.jsx";
+import ErrorPopup from "../components/Popup/ErrorPopup.jsx";
 
 import s from "./styles/Home.module.scss";
 
 export const Home = () => {
-  const [isPopupOpen, setPopup] = useState(false);
+  const [isPopupOpen, setPopup] = useState({ addRecipe: false, error: false });
 
   const dispatch = useDispatch();
 
@@ -25,24 +25,39 @@ export const Home = () => {
     dispatch({ type: sagaActions.GET_RECIPES });
   }, [dispatch]);
 
+  useEffect(() => {
+    error && setPopup((prevState) => ({ ...prevState, error: true }));
+  }, [error]);
+
   return (
     <>
-      {error ? (
-        <Error message={error} />
-      ) : isListEmpty ? (
-        <EmptyList type="main" />
-      ) : (
-        <Table />
-      )}
+      {isListEmpty ? <EmptyList type="main" /> : <Table />}
       <button
         className={s.addRecipeBtn}
         onClick={() => {
-          setPopup(true);
+          setPopup((prevState) => ({ ...prevState, addRecipe: true }));
         }}
       ></button>
-      {isPopupOpen &&
+
+      {isPopupOpen.addRecipe &&
         createPortal(
-          <Popup type="addRecipe" closePopup={() => setPopup(false)} />,
+          <Popup
+            type="addRecipe"
+            closePopup={() =>
+              setPopup((prevState) => ({ ...prevState, addRecipe: false }))
+            }
+          />,
+          document.getElementById("root")
+        )}
+
+      {isPopupOpen.error &&
+        createPortal(
+          <ErrorPopup
+            message={error}
+            closePopup={() =>
+              setPopup((prevState) => ({ ...prevState, error: false }))
+            }
+          />,
           document.getElementById("root")
         )}
     </>

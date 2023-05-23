@@ -17,30 +17,33 @@ const instance = axios.create({
 
 function* fetchRecipes() {
   yield put(addLoading(true));
+  yield put(addError(null));
   try {
     const resp = yield call(async () => await instance(""));
     yield put(getRecipes(resp.data));
     yield put(addLoading(false));
   } catch (e) {
-    yield put(addError(e.message));
+    yield put(addError(`Failed to load recipes. ${e.message}.`));
     yield put(addLoading(false));
   }
 }
 
 function* fetchNewRecipe({ payload }) {
   yield put(addLoading(true));
+  yield put(addError(null));
   try {
     const resp = yield call(async () => await instance.post("", payload));
     yield put(addRecipe(resp.data));
     yield put(addLoading(false));
   } catch (e) {
-    yield put(addError(e.message));
+    yield put(addError(`Failed to add new recipe. ${e.message}.`));
     yield put(addLoading(false));
   }
 }
 
 function* fetchUpdatedRecipe({ payload }) {
   yield put(addLoading(true));
+  yield put(addError(null));
   try {
     const resp = yield call(
       async () => await instance.put(payload.id, payload)
@@ -48,19 +51,20 @@ function* fetchUpdatedRecipe({ payload }) {
     yield put(updateRecipe(resp.data));
     yield put(addLoading(false));
   } catch (e) {
-    yield put(addError(e.message));
+    yield put(addError(`Failed to update recipe. ${e.message}.`));
     yield put(addLoading(false));
   }
 }
 
 function* fetchDeletedRecipe({ payload }) {
   yield put(addLoading(true));
+  yield put(addError(null));
   try {
     yield call(async () => await instance.delete(payload));
     yield put(deleteRecipe(payload));
     yield put(addLoading(false));
   } catch (e) {
-    yield put(addError(e.message));
+    yield put(addError(`Failed to delete recipe. ${e.message}.`));
     yield put(addLoading(false));
   }
 }
