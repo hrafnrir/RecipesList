@@ -51,7 +51,8 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
         payload: { id: nanoid(), ...values },
       });
     } else {
-      dispatch({ type: sagaActions.UPDATE_RECIPE, payload: { ...values } });
+      JSON.stringify(values) !== JSON.stringify(recipe) &&
+        dispatch({ type: sagaActions.UPDATE_RECIPE, payload: { ...values } });
     }
 
     closePopup();
