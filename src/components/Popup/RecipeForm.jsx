@@ -5,7 +5,7 @@ import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
-import { updateRecipe, deleteRecipe } from "../../model/slices/recipesSlice.js";
+import { deleteRecipe } from "../../model/slices/recipesSlice.js";
 import { selectOptions } from "../../model/selectors.js";
 import { validation } from "./formValidation.js";
 import sagaActions from "../../model/sagas/actions.js";
@@ -52,7 +52,7 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
         payload: { id: nanoid(), ...values },
       });
     } else {
-      dispatch(updateRecipe({ ...values }));
+      dispatch({ type: sagaActions.UPDATE_RECIPE, payload: { ...values } });
     }
 
     closePopup();

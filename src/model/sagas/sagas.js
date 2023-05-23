@@ -3,7 +3,7 @@ import axios from "axios";
 
 import sagaActions from "./actions.js";
 import { addLoading, addError } from "../slices/appSlice.js";
-import { getRecipes, addRecipe } from "../slices/recipesSlice.js";
+import { getRecipes, addRecipe, updateRecipe } from "../slices/recipesSlice.js";
 
 const instance = axios.create({
   baseURL: "http://localhost:3004/recipes",
@@ -34,9 +34,24 @@ function* fetchNewRecipe({ payload }) {
   }
 }
 
+function* fetchUpdatedRecipe({ payload }) {
+  yield put(addLoading(true));
+  try {
+    const resp = yield call(
+      async () => await instance.put(payload.id, payload)
+    );
+    yield put(updateRecipe(resp.data));
+    yield put(addLoading(false));
+  } catch (e) {
+    yield put(addError(e.message));
+    yield put(addLoading(false));
+  }
+}
+
 export function* rootSaga() {
   yield all([
     yield takeLatest(sagaActions.GET_RECIPES, fetchRecipes),
     yield takeLatest(sagaActions.ADD_NEW_RECIPE, fetchNewRecipe),
+    yield takeLatest(sagaActions.UPDATE_RECIPE, fetchUpdatedRecipe),
   ]);
 }
