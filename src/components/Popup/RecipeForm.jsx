@@ -5,7 +5,6 @@ import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
-import { deleteRecipe } from "../../model/slices/recipesSlice.js";
 import { selectOptions } from "../../model/selectors.js";
 import { validation } from "./formValidation.js";
 import sagaActions from "../../model/sagas/actions.js";
@@ -59,7 +58,7 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
   };
 
   const handleDelete = () => {
-    dispatch(deleteRecipe({ id: recipe.id }));
+    dispatch({ type: sagaActions.DELETE_RECIPE, payload: recipe.id });
     closePopup();
   };
 

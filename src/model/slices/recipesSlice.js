@@ -28,9 +28,7 @@ const recipesSlice = createSlice({
     },
 
     deleteRecipe(state, action) {
-      state.recipes = state.recipes.filter(
-        ({ id }) => id !== action.payload.id
-      );
+      state.recipes = state.recipes.filter(({ id }) => id !== action.payload);
     },
   },
 });
