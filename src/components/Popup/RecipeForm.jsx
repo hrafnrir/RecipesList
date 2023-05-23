@@ -5,7 +5,7 @@ import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
-import { selectOptions } from "../../model/selectors.js";
+import { selectOptions } from "../../model/recipesSelectors.js";
 import { validation } from "./formValidation.js";
 import sagaActions from "../../model/sagas/actions.js";
 

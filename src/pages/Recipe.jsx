@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { selectRecipeById } from "../model/selectors.js";
+import { selectRecipeById } from "../model/recipesSelectors.js";
 
 import RecipeCommonComponent from "../components/Popup/RecipeCommonComponent.jsx";
 
