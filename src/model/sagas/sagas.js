@@ -1,3 +1,4 @@
+import { nanoid } from "@reduxjs/toolkit";
 import { call, put, takeLatest, all } from "redux-saga/effects";
 import axios from "axios";
 
@@ -30,7 +31,9 @@ function* fetchRecipes() {
 function* fetchNewRecipe({ payload }) {
   yield put(addLoading(true));
   try {
-    const resp = yield call(async () => await instance.post("", payload));
+    const resp = yield call(
+      async () => await instance.post("", { id: nanoid(), ...payload })
+    );
     yield put(addRecipe(resp.data));
     yield put(addLoading(false));
   } catch (e) {
@@ -42,10 +45,15 @@ function* fetchNewRecipe({ payload }) {
 function* fetchUpdatedRecipe({ payload }) {
   yield put(addLoading(true));
   try {
-    const resp = yield call(
-      async () => await instance.put(payload.id, payload)
+    const prev = yield call(
+      async () => await instance(payload.id).then((resp) => resp.data)
     );
-    yield put(updateRecipe(resp.data));
+    if (JSON.stringify(payload) !== JSON.stringify(prev)) {
+      const resp = yield call(
+        async () => await instance.put(payload.id, payload)
+      );
+      yield put(updateRecipe(resp.data));
+    }
     yield put(addLoading(false));
   } catch (e) {
     yield put(addError(`Failed to update recipe. ${e.message}.`));

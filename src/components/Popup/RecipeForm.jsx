@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
 import { useSearchParams } from "react-router-dom";
 import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
@@ -46,13 +45,9 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
   const handleSubmit = (values) => {
     if (type === "addRecipe") {
       searchParams.get("search") && setSearchParams("");
-      dispatch({
-        type: sagaActions.ADD_NEW_RECIPE,
-        payload: { id: nanoid(), ...values },
-      });
+      dispatch({ type: sagaActions.ADD_NEW_RECIPE, payload: { ...values } });
     } else {
-      JSON.stringify(values) !== JSON.stringify(recipe) &&
-        dispatch({ type: sagaActions.UPDATE_RECIPE, payload: { ...values } });
+      dispatch({ type: sagaActions.UPDATE_RECIPE, payload: { ...values } });
     }
 
     closePopup();
