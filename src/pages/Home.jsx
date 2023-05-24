@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { addError } from "../model/slices/appSlice.js";
 import { selectRecipes } from "../model/recipesSelectors.js";
-import { selectError } from "../model/appSelectors.js";
+import { selectError, selectLoading } from "../model/appSelectors.js";
 import sagaActions from "../model/sagas/actions.js";
 
 import Table from "../components/Table/Table.jsx";
 import Popup from "../components/Popup/Popup.jsx";
 import EmptyList from "../components/EmptyList/EmptyList.jsx";
 import ErrorPopup from "../components/Popup/ErrorPopup.jsx";
+import Loading from "../components/Loading/Loading.jsx";
 
 import s from "./styles/Home.module.scss";
 
@@ -19,8 +20,9 @@ export const Home = () => {
 
   const dispatch = useDispatch();
 
-  const isListEmpty = !useSelector(selectRecipes).length;
+  const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const isListEmpty = !useSelector(selectRecipes).length;
 
   useEffect(() => {
     dispatch({ type: sagaActions.GET_RECIPES });
@@ -37,7 +39,13 @@ export const Home = () => {
 
   return (
     <>
-      {isListEmpty ? <EmptyList type="main" /> : <Table />}
+      {loading ? (
+        <Loading />
+      ) : isListEmpty ? (
+        <EmptyList type="main" />
+      ) : (
+        <Table />
+      )}
       <button
         className={s.addRecipeBtn}
         onClick={() => {
