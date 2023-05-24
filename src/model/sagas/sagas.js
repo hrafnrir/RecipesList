@@ -18,8 +18,6 @@ const instance = axios.create({
   headers: { Accept: "application/json" },
 });
 
-console.log(process.env.JSON_SERVER_PORT);
-
 function* fetchRecipes() {
   yield put(addLoading(true));
   try {
