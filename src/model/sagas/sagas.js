@@ -1,3 +1,5 @@
+/*eslint-env node*/
+
 import { nanoid } from "@reduxjs/toolkit";
 import { call, put, takeLatest, all } from "redux-saga/effects";
 import axios from "axios";
@@ -12,9 +14,11 @@ import {
 } from "../slices/recipesSlice.js";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3004/recipes",
+  baseURL: `http://localhost:${process.env.JSON_SERVER_PORT}/recipes`,
   headers: { Accept: "application/json" },
 });
+
+console.log(process.env.JSON_SERVER_PORT);
 
 function* fetchRecipes() {
   yield put(addLoading(true));
