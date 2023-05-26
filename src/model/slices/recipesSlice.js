@@ -1,9 +1,9 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { dishTypes, mealsOfTheDay, ingredients } from "./formOptions";
+import { createSlice } from "@reduxjs/toolkit";
 
-const recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+import { dishTypes, mealsOfTheDay, ingredients } from "./formOptions.js";
+
 const initialState = {
-  recipes,
+  recipes: [],
   dishTypes,
   mealsOfTheDay,
   ingredients,
@@ -13,19 +13,12 @@ const recipesSlice = createSlice({
   name: "recipes",
   initialState,
   reducers: {
+    getRecipes(state, action) {
+      state.recipes = action.payload;
+    },
+
     addRecipe(state, action) {
-      state.recipes.unshift({
-        id: nanoid(),
-        name: action.payload.name,
-        description: action.payload.description,
-        type: action.payload.type,
-        meal: action.payload.meal,
-        time: action.payload.time,
-        kcal: action.payload.kcal,
-        ingredients: action.payload.ingredients,
-        recipeText: action.payload.recipeText,
-        isVegan: action.payload.isVegan,
-      });
+      state.recipes.unshift(action.payload);
     },
 
     updateRecipe(state, action) {
@@ -35,13 +28,12 @@ const recipesSlice = createSlice({
     },
 
     deleteRecipe(state, action) {
-      state.recipes = state.recipes.filter(
-        ({ id }) => id !== action.payload.id
-      );
+      state.recipes = state.recipes.filter(({ id }) => id !== action.payload);
     },
   },
 });
 
-export const { addRecipe, updateRecipe, deleteRecipe } = recipesSlice.actions;
+export const { getRecipes, addRecipe, updateRecipe, deleteRecipe } =
+  recipesSlice.actions;
 
 export default recipesSlice.reducer;

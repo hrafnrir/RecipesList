@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
-import { selectRecipes } from "../../model/selectors.js";
+import { selectRecipes } from "../../model/recipesSelectors.js";
 
 import TableHeader from "./TableHeader.jsx";
 import RecipeItem from "./RecipeItem.jsx";

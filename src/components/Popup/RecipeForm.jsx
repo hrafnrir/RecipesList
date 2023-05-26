@@ -4,13 +4,9 @@ import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
-import {
-  addRecipe,
-  updateRecipe,
-  deleteRecipe,
-} from "../../model/slices/recipesSlice.js";
-import { selectOptions } from "../../model/selectors.js";
+import { selectOptions } from "../../model/recipesSelectors.js";
 import { validation } from "./formValidation.js";
+import sagaActions from "../../model/sagas/actions.js";
 
 import {
   TextInput,
@@ -49,16 +45,16 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
   const handleSubmit = (values) => {
     if (type === "addRecipe") {
       searchParams.get("search") && setSearchParams("");
-      dispatch(addRecipe({ ...values }));
+      dispatch({ type: sagaActions.ADD_NEW_RECIPE, payload: { ...values } });
     } else {
-      dispatch(updateRecipe({ ...values }));
+      dispatch({ type: sagaActions.UPDATE_RECIPE, payload: { ...values } });
     }
 
     closePopup();
   };
 
   const handleDelete = () => {
-    dispatch(deleteRecipe({ id: recipe.id }));
+    dispatch({ type: sagaActions.DELETE_RECIPE, payload: recipe.id });
     closePopup();
   };
 
