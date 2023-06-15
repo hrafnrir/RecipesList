@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import PropTypes from "prop-types";
 import cn from "classnames";
 
-import { selectOptions } from "../../model/recipesSelectors.js";
+import { selectOptions } from "../../model/selectors/recipesSelectors.js";
 import { validation } from "./formValidation.js";
 import sagaActions from "../../model/sagas/actions.js";
 
@@ -15,6 +15,7 @@ import {
   DropDown,
   MultivaluedDropDown,
   Checkbox,
+  FileInput,
 } from "./FormElements.jsx";
 
 import s from "./styles/RecipeForm.module.scss";
@@ -40,8 +41,6 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
   const mealOfTheDayOptions = useSelector(selectOptions("mealsOfTheDay"));
   const ingredientOptions = useSelector(selectOptions("ingredients"));
 
-  const initialValues = type === "addRecipe" ? clearValues : recipe;
-
   const handleSubmit = (values) => {
     if (type === "addRecipe") {
       searchParams.get("search") && setSearchParams("");
@@ -64,11 +63,17 @@ const RecipeForm = ({ type, closePopup, recipe }) => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={type === "addRecipe" ? clearValues : recipe}
       validationSchema={validation}
       onSubmit={(values) => handleSubmit(values)}
     >
       <Form className={s.root}>
+        <FileInput
+          type="file"
+          name="image"
+          accept=".jpg, .jpeg, .png"
+          label="jpg, jpeg or png. Max size of 800K."
+        />
         <TextInput type="text" name="name" placeholder="dish name" />
         <DropDown
           name="type"

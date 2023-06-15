@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 
-import { selectRecipeById } from "../model/recipesSelectors.js";
+import { selectRecipeById } from "../model/selectors/recipesSelectors.js";
 
 import RecipeCommonComponent from "../components/Popup/RecipeCommonComponent.jsx";
 
@@ -11,9 +11,23 @@ export const Recipe = () => {
   const { id } = useParams();
   const recipe = useSelector(selectRecipeById(id));
 
+  const { image = null } = recipe;
+
+  const imageStyle = { backgroundImage: `url(${image})` };
+
+  const imageComponent = image && (
+    <Link to="picture">
+      <div className={s.imageContainer}>
+        <div className={s.zoom}></div>
+        <div className={s.image} style={imageStyle}></div>
+      </div>
+    </Link>
+  );
+
   return (
     <div className={s.root}>
-      <RecipeCommonComponent recipe={recipe} />
+      <RecipeCommonComponent recipe={recipe} imageComponent={imageComponent} />
+      <Outlet />
     </div>
   );
 };

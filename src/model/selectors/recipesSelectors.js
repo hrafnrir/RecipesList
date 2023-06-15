@@ -11,5 +11,12 @@ export const selectOptions = (name) =>
       })
   );
 
-export const selectRecipeById = (id) => (state) =>
-  selectRecipes(state).find((item) => item.id === id);
+export const selectRecipeById = (recipeId) => (state) =>
+  selectRecipes(state).find(({ id }) => id === recipeId);
+
+export const selectRecipeImage = (recipeId) => (state) => {
+  const { name, image } = selectRecipes(state).find(
+    ({ id }) => id === recipeId
+  );
+  return { name, image };
+};

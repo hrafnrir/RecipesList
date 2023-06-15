@@ -114,17 +114,41 @@
   }
 }
 
-%close-popup-button {
+@mixin close-popup-button($type) {
   --width: 18px;
 
+  @if $type == main {
+    top: -28px;
+    right: 0;
+    background-image: var(--close-popup-btn_mob);
+
+    @include breakpoint(medium) {
+      top: -32px;
+    }
+
+    @include breakpoint(large) {
+      top: 44px;
+      right: 66px;
+      background-image: var(--close-popup-btn);
+    }
+  }
+
+  @if $type == pic {
+    top: 16px;
+    right: 16px;
+    background-image: var(--close-image-popup-btn);
+
+    @include breakpoint(medium) {
+      top: 32px;
+      right: 32px;
+    }
+  }
+
   position: absolute;
-  top: -28px;
-  right: 0;
   width: var(--width);
   height: var(--width);
   background: {
     color: transparent;
-    image: var(--close-popup-btn_mob);
     repeat: no-repeat;
     size: var(--width);
     position: contain;
@@ -136,15 +160,8 @@
     background-image: var(--close-popup-btn_active);
   }
 
-  @include breakpoint(medium) {
-    top: -32px;
-  }
-
   @include breakpoint(large) {
     cursor: pointer;
-    top: 44px;
-    right: 66px;
-    background-image: var(--close-popup-btn);
 
     &:hover {
       background-image: var(--close-popup-btn_active);
@@ -174,7 +191,8 @@
   padding: 14px 28px;
   text-transform: uppercase;
   color: var(--main-text-color);
-  background-color: var(--light-blue-accent-color);
+  background-color: transparent;
+  border: 1px var(--border-color) solid;
   border-radius: 10px;
   transition: 0.2s linear;
 
@@ -182,14 +200,19 @@
     padding: 16px 30px;
   }
 
-  &:hover {
-    color: var(--main-background-color);
-    background-color: var(--accent-color);
-    transition: 0.2s linear;
+  @include breakpoint(large) {
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--hover-color);
+      border-color: transparent;
+      transition: 0.2s linear;
+    }
   }
 
   &:active {
     color: var(--main-background-color);
-    background-color: var(--accent-color);
+    background-color: var(--active-color);
+    border-color: transparent;
   }
 }

@@ -1,0 +1,9 @@
+.root {
+  display: grid;
+}
+
+@media screen and (min-width: 660px) {
+  .wrapper:has(.fileInput) {
+    grid-column: 1 / 3;
+  }
+}

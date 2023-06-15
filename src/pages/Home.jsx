@@ -3,8 +3,8 @@ import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addError } from "../model/slices/appSlice.js";
-import { selectRecipes } from "../model/recipesSelectors.js";
-import { selectError, selectLoading } from "../model/appSelectors.js";
+import { selectRecipes } from "../model/selectors/recipesSelectors.js";
+import { selectError, selectLoading } from "../model/selectors/appSelectors.js";
 import sagaActions from "../model/sagas/actions.js";
 
 import Table from "../components/Table/Table.jsx";
