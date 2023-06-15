@@ -43,7 +43,7 @@
 }
 
 .closeBtn {
-  @extend %close-popup-button;
+  @include close-popup-button(main);
 
   @include breakpoint(large) {
     top: 40px;

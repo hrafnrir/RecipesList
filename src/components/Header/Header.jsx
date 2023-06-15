@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
 
-import { selectRecipes } from "../../model/recipesSelectors.js";
+import { selectRecipes } from "../../model/selectors/recipesSelectors.js";
 
 import SearchField from "./SearchField.jsx";
 

@@ -28,6 +28,7 @@ body[data-theme="light"] {
     rgb(233, 249, 222, 0.5),
     rgb(208, 227, 252, 0.5)
   );
+  --popup-dark-background: rgb(16, 16, 16, 0.85);
 
   /* icons */
 
@@ -46,6 +47,7 @@ body[data-theme="light"] {
   --close-popup-btn: url("../assets/icons/lightTheme/close-popup-btn.svg");
   --close-popup-btn_active: url("../assets/icons/lightTheme/close-popup-btn_active.svg");
   --close-popup-btn_mob: url("../assets/icons/lightTheme/close-popup-btn_mob.svg");
+  --close-image-popup-btn: url("../assets/icons/lightTheme/close-image-popup-btn.svg");
   --search: url("../assets/icons/lightTheme/search.svg");
   --error: url("../assets/icons/lightTheme/error.svg");
   --image: url("../assets/icons/lightTheme/image-icon.png");

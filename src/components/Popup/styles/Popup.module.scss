@@ -26,5 +26,5 @@
 }
 
 .closeBtn {
-  @extend %close-popup-button;
+  @include close-popup-button(main);
 }

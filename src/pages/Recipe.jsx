@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 
-import { selectRecipeById } from "../model/recipesSelectors.js";
+import { selectRecipeById } from "../model/selectors/recipesSelectors.js";
 
 import RecipeCommonComponent from "../components/Popup/RecipeCommonComponent.jsx";
 
@@ -27,6 +27,7 @@ export const Recipe = () => {
   return (
     <div className={s.root}>
       <RecipeCommonComponent recipe={recipe} imageComponent={imageComponent} />
+      <Outlet />
     </div>
   );
 };
