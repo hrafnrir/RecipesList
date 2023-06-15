@@ -55,6 +55,19 @@
   }
 }
 
+.headerContainer {
+  @include breakpoint(medium) {
+    display: grid;
+    grid-template-columns: 260px auto;
+    gap: 33px;
+  }
+
+  @include breakpoint(large) {
+    grid-template-columns: 320px auto;
+    gap: 52px;
+  }
+}
+
 .props {
   @include breakpoint(medium) {
     display: grid;
@@ -63,6 +76,10 @@
 
   @include breakpoint(large) {
     grid-template-columns: 280px auto;
+  }
+
+  .headerContainer & {
+    display: block !important;
   }
 }
 

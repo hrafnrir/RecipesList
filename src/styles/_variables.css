@@ -49,4 +49,5 @@ body[data-theme="light"] {
   --search: url("../assets/icons/lightTheme/search.svg");
   --error: url("../assets/icons/lightTheme/error.svg");
   --image: url("../assets/icons/lightTheme/image-icon.png");
+  --zoom: url("../assets/icons/lightTheme/zoom.svg");
 }
