@@ -59,5 +59,8 @@
 }
 
 .backButton {
+  --hover-color: var(--light-blue-accent-color);
+  --active-color: var(--accent-color);
+
   @extend %text-button;
 }

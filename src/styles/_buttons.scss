@@ -174,7 +174,8 @@
   padding: 14px 28px;
   text-transform: uppercase;
   color: var(--main-text-color);
-  background-color: var(--light-blue-accent-color);
+  background-color: transparent;
+  border: 1px var(--border-color) solid;
   border-radius: 10px;
   transition: 0.2s linear;
 
@@ -182,14 +183,19 @@
     padding: 16px 30px;
   }
 
-  &:hover {
-    color: var(--main-background-color);
-    background-color: var(--accent-color);
-    transition: 0.2s linear;
+  @include breakpoint(large) {
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--hover-color);
+      border-color: transparent;
+      transition: 0.2s linear;
+    }
   }
 
   &:active {
     color: var(--main-background-color);
-    background-color: var(--accent-color);
+    background-color: var(--active-color);
+    border-color: transparent;
   }
 }
