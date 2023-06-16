@@ -46,3 +46,39 @@
     transform: rotate(360deg);
   }
 }
+
+@mixin filterSlider() {
+  --height: 404px;
+
+  @include breakpoint(medium) {
+    --height: 292px;
+  }
+
+  @include breakpoint(large) {
+    --height: 216px;
+  }
+
+  @keyframes slideDown {
+    from {
+      height: 0;
+      transform: translateY(-var(--height));
+    }
+
+    to {
+      height: var(--height);
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      height: var(--height);
+      transform: translateY(0);
+    }
+
+    to {
+      height: 0;
+      transform: translateY(-var(--height));
+    }
+  }
+}

@@ -1,0 +1,5 @@
+.root:has(.reactSelect__control--menu-is-open) {
+  overflow-y: visible;
+  position: relative;
+  z-index: 2;
+}

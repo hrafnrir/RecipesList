@@ -29,6 +29,7 @@ body[data-theme="light"] {
     rgb(208, 227, 252, 0.5)
   );
   --popup-dark-background: rgb(16, 16, 16, 0.85);
+  --range-shadow-color: rgb(249, 249, 249, 0.68);
 
   /* icons */
 

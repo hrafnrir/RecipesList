@@ -1,0 +1,55 @@
+@import "../../../styles/breakpoints", "../../../styles/typography",
+  "../../../styles/buttons", "../../../styles/animations";
+
+.root {
+  overflow-y: hidden;
+}
+
+.wrapper {
+  height: 0;
+}
+
+.form {
+  margin-top: 16px;
+  padding: 0 22px;
+  border-radius: 0;
+  border-bottom: 1px var(--border-color) solid;
+
+  @include breakpoint(medium) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 60px;
+    margin-top: 20px;
+    padding: 0 44px;
+  }
+
+  @include breakpoint(large) {
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 80px;
+    padding: 0 66px;
+  }
+}
+
+.submitBtn {
+  --hover-color: var(--light-blue-accent-color);
+  --active-color: var(--accent-color);
+
+  @extend %text-button;
+
+  display: inline-block;
+  margin-bottom: 22px;
+  width: max-content;
+
+  @include breakpoint(medium) {
+    margin: {
+      bottom: 0;
+      top: -12px;
+    }
+
+    height: max-content;
+  }
+
+  @include breakpoint(large) {
+    margin-top: 0;
+  }
+}
