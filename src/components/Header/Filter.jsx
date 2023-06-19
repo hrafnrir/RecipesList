@@ -17,7 +17,7 @@ const Filter = ({ visibility }) => {
     meal: searchParams.get("meal") || "",
     kcal: +searchParams.get("kcal") || 0,
     time: +searchParams.get("time") || 0,
-    isVegan: searchParams.get("isVegan") || false,
+    isVegan: searchParams.get("isVegan") ? true : false,
   };
 
   const submit = useSubmit();
