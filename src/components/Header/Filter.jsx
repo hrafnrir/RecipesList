@@ -47,6 +47,16 @@ const Filter = ({ visibility }) => {
     }
   };
 
+  const handleResetForm = (e) => {
+    e.preventDefault();
+
+    searchParams.has("search")
+      ? setSearchParams({
+          search: searchParams.get("search"),
+        })
+      : setSearchParams("");
+  };
+
   const wrapperClass = cn(s.wrapper, {
     [s.wrapper_visible]: visibility,
     [s.wrapper_unvisible]: !visibility,
@@ -55,7 +65,7 @@ const Filter = ({ visibility }) => {
   return (
     <div className={cn(s.root, "root")}>
       <div className={wrapperClass}>
-        <Form className={s.form}>
+        <Form className={s.form} onReset={handleResetForm}>
           <DropDown
             name="type"
             options={dishTypeOptions}
