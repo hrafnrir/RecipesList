@@ -6,7 +6,22 @@
 }
 
 .wrapper {
+  display: none;
   height: 0;
+
+  &_visible {
+    @include filterSlider();
+
+    display: block;
+    animation: slideDown 0.4s forwards ease-out;
+  }
+
+  &_unvisible {
+    @include filterSlider();
+
+    display: block;
+    animation: slideUp 0.4s forwards ease-in;
+  }
 }
 
 .form {
