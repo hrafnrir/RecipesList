@@ -53,7 +53,7 @@ export const RangeInput = ({ name, id, value, label, onChange, max }) => {
         type="range"
         id={id}
         value={value}
-        onChange={(e) => onChange({ name, value: e.target.value })}
+        onChange={(e) => onChange({ name, value: +e.target.value })}
         max={max}
       />
     </div>
@@ -77,7 +77,7 @@ RangeInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   max: PropTypes.string.isRequired,
 };
