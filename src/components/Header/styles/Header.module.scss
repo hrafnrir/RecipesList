@@ -1,27 +1,44 @@
-@import "../../../styles/breakpoints", "../../../styles/typography";
+@import "../../../styles/breakpoints", "../../../styles/typography",
+  "../../../styles/buttons";
 
 .root {
-  margin: {
-    bottom: 30px;
-    left: 22px;
-    right: 22px;
-  }
+  position: relative;
+  z-index: 1;
+  margin: 0 22px;
+  padding-bottom: 30px;
+  background-color: var(--main-background-color);
 
   @include breakpoint(medium) {
-    display: flex;
+    display: grid;
+    grid-template-columns: max-content auto;
+    row-gap: 20px;
     align-items: center;
     margin: {
-      bottom: 38px;
       left: 44px;
       right: 44px;
     }
+
+    padding-bottom: 38px;
   }
 
   @include breakpoint(large) {
     margin: {
-      bottom: 50px;
       left: 66px;
       right: 66px;
+    }
+
+    padding-bottom: 50px;
+  }
+
+  &:has(.filterBtn) {
+    padding-bottom: 14px;
+
+    @include breakpoint(medium) {
+      padding-bottom: 18px;
+    }
+
+    @include breakpoint(large) {
+      padding-bottom: 20px;
     }
   }
 }
@@ -33,5 +50,37 @@
 
   @include breakpoint(medium) {
     display: inline-block;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+}
+
+.filterBtn {
+  --hover-color: var(--light-blue-accent-color);
+  --active-color: var(--accent-color);
+
+  @extend %text-button;
+
+  display: inline-block;
+  margin-top: 22px;
+  width: max-content;
+
+  @include breakpoint(medium) {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    margin-top: 0;
+  }
+
+  &_active {
+    color: var(--main-background-color);
+    background-color: var(--accent-color);
+    border-color: transparent;
+
+    @include breakpoint(large) {
+      &:hover {
+        color: var(--main-background-color);
+        background-color: var(--first-text-color);
+      }
+    }
   }
 }

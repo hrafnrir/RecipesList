@@ -9,9 +9,22 @@ const SearchField = () => {
   const submit = useSubmit();
 
   const handleChangeSearchQuery = (e) => {
-    submit(e.currentTarget.form, {
-      replace: !(searchQuery === ""),
-    });
+    const prevValues = {};
+
+    for (const [key, value] of searchParams.entries()) {
+      if (key === "search") continue;
+
+      prevValues[key] = value;
+    }
+
+    submit(
+      { search: e.currentTarget.value, ...prevValues },
+      {
+        method: "get",
+        action: "/",
+        replace: !(searchQuery === ""),
+      }
+    );
   };
 
   return (

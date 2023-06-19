@@ -3,11 +3,13 @@ import cn from "classnames";
 
 import s from "./styles/EmptyList.module.scss";
 
-const EmptyList = ({ type, searchQuery }) => {
+const EmptyList = ({ type, searchQuery = null }) => {
   const description =
-    type === "search"
+    type === "main"
+      ? "The list of your dishes is empty. Please add a new recipe."
+      : searchQuery
       ? `'${searchQuery}' was not found.`
-      : "The list of your dishes is empty. Please add a new recipe.";
+      : "No recipes were found. Try removing a filter.";
 
   const rootClass = cn(s.root, { [s.root_search]: type === "search" });
 

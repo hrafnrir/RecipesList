@@ -1,10 +1,16 @@
 @import "../../../styles/breakpoints", "../../../styles/typography";
 
 .root {
-  margin-bottom: 14px;
+  margin: {
+    top: 16px;
+    bottom: 14px;
+  }
 
   @include breakpoint(medium) {
-    margin-bottom: 18px;
+    margin: {
+      top: 20px;
+      bottom: 18px;
+    }
   }
 }
 

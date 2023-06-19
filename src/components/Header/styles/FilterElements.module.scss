@@ -1,0 +1,155 @@
+@import "../../../styles/breakpoints", "../../../styles/typography";
+
+.wrapper {
+  position: relative;
+  margin-bottom: 32px;
+
+  @include breakpoint(medium) {
+    margin-bottom: 50px !important;
+  }
+
+  &:has(.checkboxLabel) {
+    margin-bottom: 30px;
+
+    @include breakpoint(medium) {
+      margin-bottom: 38px;
+    }
+  }
+
+  &:nth-child(5) {
+    @include breakpoint(large) {
+      grid-column: 3 / 4;
+      grid-row: 1 / 2;
+    }
+  }
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.checkboxLabel {
+  @include p-normal;
+
+  position: relative;
+  padding-left: 40px;
+  color: var(--second-text-color);
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 24px;
+    height: 24px;
+    background: {
+      image: var(--checkbox);
+      repeat: no-repeat;
+      size: contain;
+      position: center;
+    }
+
+    transition: background-image 0.2s linear;
+
+    @include breakpoint(medium) {
+      top: -2px;
+    }
+  }
+
+  @include breakpoint(large) {
+    cursor: pointer;
+  }
+
+  &:has(.checkbox:checked)::after {
+    background-image: var(--checkbox_checked);
+  }
+}
+
+.ddLabel {
+  @include p-medium;
+
+  margin-bottom: 10px;
+  color: var(--first-text-color);
+  text-transform: uppercase;
+
+  @include breakpoint(medium) {
+    margin-bottom: 16px;
+  }
+}
+
+.rangeLabel {
+  @include p-medium;
+
+  display: inline-block;
+  margin-right: 10px;
+  color: var(--second-text-color);
+}
+
+.rangeValue {
+  @include p-medium;
+
+  color: var(--first-text-color);
+}
+
+.range {
+  width: 100%;
+  appearance: none;
+  overflow-x: hidden;
+  margin-top: 5px;
+  height: 13px;
+  background-color: transparent;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  @include breakpoint(medium) {
+    margin-top: 12px;
+  }
+
+  &::-webkit-slider-runnable-track {
+    max-height: 1px;
+    background-color: var(--first-text-color);
+
+    -webkit-appearance: none;
+  }
+
+  &::-webkit-slider-thumb {
+    cursor: pointer;
+    margin-top: -6px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--first-text-color);
+    border-radius: 50%;
+    box-shadow: -500px 0 0 500px var(--range-shadow-color);
+
+    -webkit-appearance: none;
+
+    @include breakpoint(large) {
+      margin-top: -3px;
+      width: 7px;
+      height: 7px;
+    }
+  }
+
+  &::-moz-range-track {
+    max-height: 1px;
+    background-color: var(--first-text-color);
+
+    -moz-appearance: none;
+  }
+
+  &::-moz-range-thumb {
+    cursor: pointer;
+    margin: 0px;
+    padding: 0px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--first-text-color);
+    border-radius: 50%;
+    box-shadow: -500px 0 0 500px var(--range-shadow-color);
+
+    -moz-appearance: none;
+  }
+}
