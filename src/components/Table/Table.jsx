@@ -16,7 +16,7 @@ const Table = () => {
   }
 
   const recipes = useSelector(selectFilteredRecipes(query)).map(
-    (item, index) => <RecipeItem key={index} recipe={item} index={++index} />
+    (item, index) => <RecipeItem key={index} recipe={item} />
   );
 
   return (
